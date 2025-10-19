@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-nyu-50:  #f8f5fc;
+  --color-nyu-100: #ede4f9;
+  --color-nyu-200: #dac3f1;
+  --color-nyu-300: #be91e5;
+  --color-nyu-400: #9e59d4;
+  --color-nyu-500: #7e22ce; /* main mid purple (close to tailwind purple-700) */
+  --color-nyu-600: #661aaf;
+  --color-nyu-700: #57068c; /* official NYU Violet */
+  --color-nyu-800: #44046d;
+  --color-nyu-900: #2b0245;
+}
+
+@theme {
+  --color-off-white: #f5f5f7;
+}
+
+#f5f5f7
+
+button {
+  cursor: pointer;
+}
+
+body {
+  background-color: white;
+}

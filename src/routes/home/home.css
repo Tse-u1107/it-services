@@ -1,0 +1,12 @@
+.home {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+  justify-content: center;
+}
+
+.home-first {
+  max-width: 760px;
+  flex: 1;
+  margin: 0 auto;
+}
