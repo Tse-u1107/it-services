@@ -14,34 +14,9 @@ import {
   CpuChipIcon,
   ShieldCheckIcon,
   UserGroupIcon,
-  PlusIcon,
 } from '@heroicons/react/24/outline';
 import IdBanner from './components/banner';
-
-const AccessCard = ({
-  title,
-  content,
-  icon,
-  id,
-}: {
-  title: string;
-  content: string;
-  icon: React.ReactNode;
-  id: string;
-}) => {
-  return (
-    <div id={id} className="bg-white m-2 p-4 rounded-4xl w-1/4 relative">
-      <div className="absolute top-4 left-4">{icon}</div>
-      <div className="w-full mt-8">{title}</div>
-      <div className="w-full">{content}</div>
-      <div className="absolute bottom-4 right-4">
-        <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-          <PlusIcon className="w-4 h-4 text-white" />
-        </div>
-      </div>
-    </div>
-  );
-};
+import AccessCardBlock from '../../components/accessCard/accessCardBlock';
 
 const HomeRoute = () => {
   const [, setSearchValue] = useState('');
@@ -141,24 +116,10 @@ const HomeRoute = () => {
             <ExpandableList items={items} allowMultiple={false} />
           </div>
         </div>
-        <div className="w-full">
-          <div className="flex justify-between">
-            <div className="">Quick Access</div>
-            <div>Browse all topics</div>
-          </div>
-          <div>
-            <div className="flex flex-wrap justify-center">
-              {accessItems.map((item, index) => (
-                <AccessCard
-                  key={item.id}
-                  title={item.title}
-                  content={item.content}
-                  icon={item.icon}
-                  id={'access_' + String(index)}
-                />
-              ))}
-            </div>
-          </div>
+        <div>
+          <AccessCardBlock 
+            accessItems={accessItems}
+          />
         </div>
       </div>
       <IdBanner />

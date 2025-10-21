@@ -1,36 +1,52 @@
 import React, { useState } from 'react';
-import { type Item } from './interface';
-import './expandableList.css';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon as ChevronDown } from '@heroicons/react/24/outline';
+
+interface Item {
+  id: string;
+  title: string;
+  content: React.ReactNode;
+  icon?: React.ReactNode;
+}
 
 interface ExpandableListProps {
   items: Item[];
   allowMultiple: boolean;
 }
 
-const ListItem: React.FC<Item & { isExpanded: boolean; onToggle: () => void }> = ({
-  id,
+const ListItem: React.FC<Item & { isExpanded: boolean; onToggle: () => void; isLast: boolean }> = ({
   content,
   title,
   icon,
   isExpanded,
   onToggle,
+  isLast,
 }) => {
   return (
-    <div key={id} className="list-item">
-      <button className="item-title-wrapper" onClick={onToggle}>
-        <div className="item-title">
-          {icon && <span>{icon}</span>}
-          <span>{title}</span>
+    <div className="bg-white">
+      <button
+        className={`p-4 w-full flex justify-between items-center cursor-pointer hover:bg-gray-50 transition-colors ${
+          !isLast || isExpanded ? 'border-b-2 border-gray-100' : ''
+        }`}
+        onClick={onToggle}
+      >
+        <div className="flex items-center gap-3">
+          {icon && <span className="text-purple-900">{icon}</span>}
+          <span className="font-medium">{title}</span>
         </div>
-        <div>
-          <ChevronDownIcon
-            className={`w-5 h-5 transition-transform duration-300 ${isExpanded ? 'rotate-180' : 'rotate-0'}`}
-          />
-        </div>
+        <ChevronDown
+          className={`w-5 h-5 text-purple-900 transition-transform duration-300 ease-in-out ${
+            isExpanded ? 'rotate-180' : 'rotate-0'
+          }`}
+        />
       </button>
-      <div className={`item-content-wrapper ${isExpanded ? 'expanded' : ''}`}>
-        {content}
+      <div
+        className={`grid transition-all duration-300 ease-in-out ${
+          isExpanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className={`p-4 ${!isLast ? 'border-b-2 border-gray-100' : ''}`}>{content}</div>
+        </div>
       </div>
     </div>
   );
@@ -56,17 +72,17 @@ const ExpandableList: React.FC<ExpandableListProps> = ({ items, allowMultiple })
   };
 
   return (
-    <div id="expandableListComponent" className="list-main">
+    <div className="rounded-[32px] overflow-hidden border border-gray-200">
       {items.map((item, index) => (
         <ListItem
           key={item.id}
           {...item}
           isExpanded={expandedIndexes.has(index)}
           onToggle={() => handleToggle(index)}
+          isLast={index === items.length - 1}
         />
       ))}
     </div>
   );
 };
-
 export default ExpandableList;

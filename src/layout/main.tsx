@@ -6,7 +6,7 @@ const Main = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <Navbar />
-      <div className='bg-off-white'>
+      <div className='bg-off-white min-h-screen'>
         {children}
       </div>
       <Footer />

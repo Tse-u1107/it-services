@@ -46,6 +46,13 @@
   border-bottom: 1px solid #57068c;
 }
 
+.navbar button.active {
+  color: #57068c;
+  font-weight: 600;
+  border-bottom: 2px solid #57068c;
+}
+
+
 
 /* .navbar .customButton {
   text-xs font-normal text-gray-800 hover:text-gray-600 transition-colors duration-200 bg-transparent border-0 cursor-pointer p-0
@@ -62,3 +69,4 @@
   width: 16px;
   height: 16px;
 }
+

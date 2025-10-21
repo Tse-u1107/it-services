@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const SearchBar = ({
   placeholder = '',
@@ -12,6 +12,8 @@ const SearchBar = ({
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
 
+  const [val, setVal] = useState('')
+
   return (
     <div id="searchBarWrapper" className="bg-nyu-700 searchBarWrapper bg-white relative rounded-4xl">
       <div className="flex items-center">
@@ -19,8 +21,11 @@ const SearchBar = ({
           <input
             className="w-full p-4 outline-none rounded-4xl"
             placeholder={placeholder}
-            value={value}
-            onChange={(e) => onChange?.(e)}
+            value={val || value}
+            onChange={(e) => {
+              onChange?.(e)
+              setVal(e?.target?.value)
+            }}
           />
         </div>
         <div className="absolute right-2">
