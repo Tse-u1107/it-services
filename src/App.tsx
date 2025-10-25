@@ -1,7 +1,7 @@
 import './App.css';
 import Main from './layout/main';
 import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
-import HomeRoute from './routes/home';
+import HomeRoute from './routes/home/home';
 import CategoryRoute from './routes/categories';
 import GuideRoute from './routes/guides';
 import FaqRoute from './routes/faq';

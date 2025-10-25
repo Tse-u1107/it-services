@@ -1,0 +1,9 @@
+.searchBarWrapper {
+    background-color: white;
+    position: relative;
+    height: 68px;
+    align-items: center;
+    display: flex;
+    padding-left: 2rem;
+    font-size: 16px;
+}

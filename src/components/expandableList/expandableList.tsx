@@ -24,14 +24,14 @@ const ListItem: React.FC<Item & { isExpanded: boolean; onToggle: () => void; isL
   return (
     <div className="bg-white">
       <button
-        className={`p-4 w-full flex justify-between items-center cursor-pointer hover:bg-gray-50 transition-colors ${
+        className={`p-4 w-full flex justify-between items-center cursor-pointer hover:bg-gray-50 transition-colors h-[68px] ${
           !isLast || isExpanded ? 'border-b-2 border-gray-100' : ''
         }`}
         onClick={onToggle}
       >
         <div className="flex items-center gap-3">
           {icon && <span className="text-purple-900">{icon}</span>}
-          <span className="font-medium">{title}</span>
+          <span className="font-medium text-md">{title}</span>
         </div>
         <ChevronDown
           className={`w-5 h-5 text-purple-900 transition-transform duration-300 ease-in-out ${

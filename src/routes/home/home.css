@@ -1,12 +1,19 @@
 .home {
-  max-width: 960px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 2rem;
+  padding-bottom: 2rem;
+  padding-top: 40px;
   justify-content: center;
 }
 
-.home-first {
+.home > .home-wrapper-1 {
   max-width: 760px;
   flex: 1;
   margin: 0 auto;
+  margin-bottom: 76px;
+}
+
+.home > .home-wrapper-2 {
+  width: 1080px;
+  margin-bottom: 76px;
 }

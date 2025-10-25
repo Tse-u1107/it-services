@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './searchBar.css'
 
 const SearchBar = ({
   placeholder = '',
@@ -15,11 +16,11 @@ const SearchBar = ({
   const [val, setVal] = useState('')
 
   return (
-    <div id="searchBarWrapper" className="bg-nyu-700 searchBarWrapper bg-white relative rounded-4xl">
-      <div className="flex items-center">
+    <div id="searchBarWrapper" className="searchBarWrapper rounded-4xl">
+      <div className="flex items-center w-full">
         <div className="flex-1">
           <input
-            className="w-full p-4 outline-none rounded-4xl"
+            className="w-full outline-none"
             placeholder={placeholder}
             value={val || value}
             onChange={(e) => {

@@ -49,11 +49,15 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.icon-5 {
+  width: 20px;
+  height: 20px;
 }
 
+.icon-6 {
+  width: 24px;
+  height: 24px;
+}
 
 /*---------------------------- Buttons ----------------------------- */
 
@@ -70,7 +74,9 @@ button.search {
 }
 
 .hover-shade {
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .hover-shade:hover {
