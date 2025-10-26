@@ -107,7 +107,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         </li>
 
         {crumbs.map((c, i) => (
-          <li key={c.href} className="flex items-center">
+          <li key={c.href} className="flex items-center text-[14px]">
             <span className="sr-only">{i === crumbs.length - 1 ? 'Current page:' : ''}</span>
             <span aria-hidden>{separator}</span>
             {c.isLast ? (

@@ -16,7 +16,7 @@ const SearchBar = ({
   const [val, setVal] = useState('')
 
   return (
-    <div id="searchBarWrapper" className="searchBarWrapper rounded-4xl">
+    <div id="searchBarWrapper" className="searchBarWrapper w-full rounded-4xl">
       <div className="flex items-center w-full">
         <div className="flex-1">
           <input

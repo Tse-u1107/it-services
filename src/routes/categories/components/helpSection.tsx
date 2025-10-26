@@ -1,5 +1,5 @@
 // HelpSection.tsx
-import React from "react";
+import React from 'react';
 
 interface HelpItem {
   title: string;
@@ -22,18 +22,14 @@ const HelpSection: React.FC<HelpSectionProps> = ({ sections }) => {
       {sections.map((section, idx) => (
         <div key={idx} className="space-y-4">
           {/* Section Title */}
-          <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-200 pb-2">
+          <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-200 px-1 py-7">
             {section.title}
           </h2>
 
           {/* Cards */}
-          <div className="space-y-6">
+          <div className="">
             {section.items.map((item, i) => (
-              <a
-                key={i}
-                href={item.href || "#"}
-                className="block group transition-all"
-              >
+              <a key={i} href={item.href || '#'} className="py-6 px-1 block group border-b border-gray-200 transition-all">
                 <h3 className="text-purple-700 font-semibold group-hover:underline">
                   {item.title}
                 </h3>

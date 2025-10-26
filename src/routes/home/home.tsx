@@ -66,37 +66,37 @@ const HomeRoute = () => {
       id: 'access_1',
       title: LL.home.list.account(),
       content: 'Account content',
-      icon: <UserIcon className="icon-6" />,
+      icon: <UserIcon className="icon-8" />,
     },
     {
       id: 'access_2',
       title: LL.home.list.network(),
       content: 'Network content',
-      icon: <WifiIcon className="icon-6" />,
+      icon: <WifiIcon className="icon-8" />,
     },
     {
       id: 'access_3',
       title: LL.home.list.software(),
       content: 'Install, update, and manage software applications.',
-      icon: <WindowIcon className="icon-6" />,
+      icon: <WindowIcon className="icon-8" />,
     },
     {
       id: 'access_4',
       title: LL.home.list.hardware(),
       content: 'Monitor and maintain hardware devices.',
-      icon: <CpuChipIcon className="icon-6" />,
+      icon: <CpuChipIcon className="icon-8" />,
     },
     {
       id: 'access_5',
       title: LL.home.list.security(),
       content: 'Review security policies and access control.',
-      icon: <ShieldCheckIcon className="icon-6" />,
+      icon: <ShieldCheckIcon className="icon-8" />,
     },
     {
       id: 'access_6',
       title: LL.home.list.support(),
       content: 'Get help and support services.',
-      icon: <UserGroupIcon className="icon-6" />,
+      icon: <UserGroupIcon className="icon-8" />,
     },
   ];
 
