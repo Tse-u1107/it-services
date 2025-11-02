@@ -34,7 +34,7 @@ const ListItem: React.FC<Item & { isExpanded: boolean; onToggle: () => void; isL
           <span className="font-medium text-md">{title}</span>
         </div>
         <ChevronDown
-          className={`w-5 h-5 text-purple-900 transition-transform duration-300 ease-in-out ${
+          className={`icon-5 text-purple-900 transition-transform duration-300 ease-in-out ${
             isExpanded ? 'rotate-180' : 'rotate-0'
           }`}
         />
@@ -45,7 +45,7 @@ const ListItem: React.FC<Item & { isExpanded: boolean; onToggle: () => void; isL
         }`}
       >
         <div className="overflow-hidden">
-          <div className={`p-4 ${!isLast ? 'border-b-2 border-gray-100' : ''}`}>{content}</div>
+          <div className={`px-13 py-6 ${!isLast ? 'border-b-2 border-gray-100' : ''}`}>{content}</div>
         </div>
       </div>
     </div>
@@ -85,4 +85,5 @@ const ExpandableList: React.FC<ExpandableListProps> = ({ items, allowMultiple })
     </div>
   );
 };
+
 export default ExpandableList;

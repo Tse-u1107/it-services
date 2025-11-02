@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './navigationBar/Navbar';
+import Navbar from '../components/navigationBar/Navbar';
 import Footer from '../components/footer/footer';
 
 const Main = ({ children }: { children: React.ReactNode }) => {
