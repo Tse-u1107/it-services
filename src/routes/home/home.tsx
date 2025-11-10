@@ -19,7 +19,7 @@ import IdBanner from './components/banner';
 import AccessCardBlock from '../../components/accessCard/accessCardBlock';
 
 import { fetchRequest } from '../../api/client/fetchRequest';
-import { serviceList } from '../../api/url';
+import { menuLinks, serviceList } from '../../api/url';
 import { processLinks, type FilteredLink } from './components/menuLinks';
 
 interface MenuCategories {
@@ -56,8 +56,12 @@ const HomeRoute = () => {
   const [filteredLinks, setFilteredLinks] = useState<FilteredLink[]>([]);
   const [groupedLinks, setGroupedLinks] = useState<Record<string, FilteredLink[]>>({});
 
+  const [test, setTest] = useState(0)
+
   const fetchServiceList = async () => {
     const data = await fetchRequest(serviceList);
+    const menuLinkData = await fetchRequest(menuLinks)
+    
     const result = processLinks(data);
     const { filtered, grouped, stats } = result;
     setMenuItems({
@@ -65,8 +69,13 @@ const HomeRoute = () => {
     });
     setFilteredLinks(filtered);
     setGroupedLinks(grouped);
-    console.log(grouped);
+    // console.log(data);
+    console.log(menuLinkData)
+    setTest(data[5].view_node)
   };
+
+  console.log(test)
+
 
   useEffect(() => {
     fetchServiceList();

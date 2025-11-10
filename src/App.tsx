@@ -15,6 +15,7 @@ function App() {
         <Main>
           <Routes>
             {/* <Route path="*" element={<Navigate to="/home" replace />} /> */}
+            <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<HomeRoute />} />
             <Route path="/categories" element={<CategoryRoute />} />
             <Route path="/guides/*" element={<GuideRoute />} />

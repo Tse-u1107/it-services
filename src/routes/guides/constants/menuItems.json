@@ -1,0 +1,1716 @@
+[
+  {
+    "title": "Home",
+    "link": "/"
+  },
+  {
+    "title": "Academic Technology Portal",
+    "link": "/Academic-Technology-Portal"
+  },
+  {
+    "title": "Audio and Visual",
+    "link": "/Audio-and-Visual",
+    "children": [
+      {
+        "title": "A/V Platform System User Manual (Internal)",
+        "link": "/Audio-and-Visual/AV-Platform"
+      },
+      {
+        "title": "Classroom and Lab Support",
+        "link": "/Audio-and-Visual/Classroom-and-Lab-Support",
+        "children": [
+          {
+            "title": "Best Practice for Classroom Support Service Operation",
+            "link": "/Audio-and-Visual/Classroom-and-Lab-Support/Support-Service-Operation"
+          },
+          {
+            "title": "Computer Notice (Faculty Version)",
+            "link": "/Audio-and-Visual/Classroom-and-Lab-Support/Computer-Notice-Faculty-Version"
+          },
+          {
+            "title": "Smart Classrooms Instructions",
+            "link": "/Audio-and-Visual/Classroom-and-Lab-Support/Small-Classrooms-Instructions"
+          }
+        ]
+      },
+      {
+        "title": "Multimedia Services",
+        "link": "/Audio-and-Visual/Multimedia-Services",
+        "children": [
+          {
+            "title": "GPS Document",
+            "link": "/Audio-and-Visual/Multimedia-Services/GPS-Document"
+          },
+          {
+            "title": "Multimedia Service: Video Recording & Post-Production SOP (INTERNAL)",
+            "link": "/Audio-and-Visual/Multimedia-Services/Video-Recording-Post-Production-SOP"
+          }
+        ]
+      },
+      {
+        "title": "Web Conference",
+        "link": "/Audio-and-Visual/Web-Conference",
+        "children": [
+          {
+            "title": "Zoom: Getting Started",
+            "link": "/Audio-and-Visual/Web-Conference/Zoom",
+            "children": [
+              {
+                "title": "Download Zoom for Android",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Android"
+              },
+              {
+                "title": "Download Zoom for iOS",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/iOS"
+              },
+              {
+                "title": "Download and Install Zoom for Windows",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Windows"
+              },
+              {
+                "title": "Download and Install Zoom for macOS",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/macOS"
+              },
+              {
+                "title": "Secure a Zoom Meeting and Account",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Security-Tips"
+              },
+              {
+                "title": "Zoom Common Features and Tips",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Tips"
+              },
+              {
+                "title": "Zoom Local Recording and Cloud Recording",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Recording"
+              },
+              {
+                "title": "Zoom Personal Audio Conference (PAC)",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Personan-Audio-Conference"
+              },
+              {
+                "title": "Zoom Personal Meeting ID and Personal Meeting Link",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Customize-MeetingID-Link-Name"
+              },
+              {
+                "title": "Zoom Scheduler Browser Extension (Chrome and Firefox)",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Browser-Extension"
+              },
+              {
+                "title": "Zoom Scheduling Privileges",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Schedule-Privileges"
+              },
+              {
+                "title": "Zoom Troubleshooting: Audio Echo",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Troubleshooting-Audio-Echo"
+              },
+              {
+                "title": "Zoom Troubleshooting: Fix a Blurry or Grainy Screen",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Troubleshooting-blurry-screen"
+              },
+              {
+                "title": "Zoom Troubleshooting: Low Volume",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Troubleshooting-Low-Volume"
+              },
+              {
+                "title": "Zoom Troubleshooting: Notification Sound When Participants Join the Meeting",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Troubleshooting-Mute-Participants-Join-Notification"
+              },
+              {
+                "title": "Zoom Troubleshooting: The Shared Screen Has No Sound",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Troubleshooting-Shared-Screen-No-Sound"
+              },
+              {
+                "title": "Zoom Troubleshooting: The Toll Call List Exclude the Mainland China Invitation Number",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Troubleshooting-TollCall-List-Excludes-MainlandChina-Number-"
+              },
+              {
+                "title": "Zoom User Manual for Beginners",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/User-Manual-Beginner"
+              },
+              {
+                "title": "Zoom Virtual Background",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Virtual-Background"
+              },
+              {
+                "title": "Zoom Waiting Room",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Waiting-Room"
+              },
+              {
+                "title": "Zoom: Changing the Email Associated with an Account",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Change-Email-Associate-with-Account"
+              },
+              {
+                "title": "Zoom: Dial into the H.323/SIP Room Connector",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Dail-into-H323-SIP"
+              },
+              {
+                "title": "Zoom: Join a Meeting",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Join-Meeting"
+              },
+              {
+                "title": "Zoom: Roles in a Meeting",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Meeting-Roles"
+              },
+              {
+                "title": "Zoom: Set Time Zone and Recurring Meeting",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Time-Zone"
+              },
+              {
+                "title": "Zoom: Switch to the NYU Zoom Account from the Non-NYU Zoom Account",
+                "link": "/Audio-and-Visual/Web-Conference/Zoom/Switch-to-NYU-Zoom-Account"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Campus Card",
+    "link": "/Campus-Card",
+    "children": [
+      {
+        "title": "Add Digital Campus Card in Apple Wallet on iPhone",
+        "link": "/Campus-Card/Add-Digital-Campus-Card"
+      },
+      {
+        "title": "Campus Card Online Portal",
+        "link": "/Campus-Card/User-Portal"
+      },
+      {
+        "title": "NFC Digital Campus Card",
+        "link": "/Campus-Card/NFC-Digital-Campus-Card"
+      },
+      {
+        "title": "Top up Campus Card",
+        "link": "/Campus-Card/Top-Up"
+      }
+    ]
+  },
+  {
+    "title": "Computing and Server",
+    "link": "/Computing-and-Server",
+    "children": [
+      {
+        "title": "Alibaba Cloud Services (Alicloud/Aliyun/阿里云)",
+        "link": "/Computing-and-Server/Alibaba-Cloud-Aliyun"
+      },
+      {
+        "title": "Amazon Web Services (AWS)",
+        "link": "/Computing-and-Server/Amazon-Web-Services-AWS"
+      },
+      {
+        "title": "High-Performance Computing (HPC)",
+        "link": "/Computing-and-Server/HPC",
+        "children": [
+          {
+            "title": "Computing and Storage Facilities Specifications",
+            "link": "/Computing-and-Server/High-Performance-Computing/Computing-and-Storage-Facilities-Specifications"
+          },
+          {
+            "title": "Support Resources",
+            "link": "/Computing-and-Server/High-Performance-Computing/Support-Resources"
+          }
+        ]
+      },
+      {
+        "title": "Server Patch Management (SOP)",
+        "link": "/Computing-and-Server/Server-Patch-Management"
+      },
+      {
+        "title": "VMware",
+        "link": "/Computing-and-Server/VMware"
+      },
+      {
+        "title": "Virtual Machine (VM)",
+        "link": "/Computing-and-Server/Virtual-Machine",
+        "children": [
+          {
+            "title": "Virtual Machine: Management and Maintaining",
+            "link": "/Computing-and-Server/Virtual-Machine/Management-and-Maintaining"
+          }
+        ]
+      },
+      {
+        "title": "Windows Server Update Services (WSUS)",
+        "link": "/Computing-and-Server/WSUS"
+      },
+      {
+        "title": "Zabbix Agent",
+        "link": "/Computing-and-Server/Zabbix-Agent",
+        "children": [
+          {
+            "title": "Zabbix Agent Installation",
+            "link": "/Computing-and-Server/Zabbix-Agent/Installation"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Data Center Management",
+    "link": "/Data-Center-Management",
+    "children": [
+      {
+        "title": "EMS API",
+        "link": "/Data-Center-Management/EMS-API"
+      },
+      {
+        "title": "MDF & IDF",
+        "link": "/Data-Center-Management/MDF-IDF"
+      }
+    ]
+  },
+  {
+    "title": "Engage",
+    "link": "/Engage",
+    "children": [
+      {
+        "title": "Engage: Creating an Election Eligibility List",
+        "link": "/Engage/Election-Eligibility-Lists-Creation"
+      },
+      {
+        "title": "Engage: Events Check-in Service",
+        "link": "/Engage/Events-Checkin-Service"
+      }
+    ]
+  },
+  {
+    "title": "Event Management System (EMS)",
+    "link": "/EMS",
+    "children": [
+      {
+        "title": "EMS: Admin Client Installation on Windows PC",
+        "link": "/EMS/Admin-Client-Installation-"
+      },
+      {
+        "title": "EMS: Admin Client Installation on Windows PC",
+        "link": "/EMS/Admin-Client-Installation-WindowsPC",
+        "children": [
+          {
+            "title": "Manage Reservations",
+            "link": "/wiki/ems/reservations"
+          }
+        ]
+      },
+      {
+        "title": "Music Practice Room Reservation Guideline (Testing)",
+        "link": "/EMS/Music-Practice-Room-Reservation-Guideline"
+      }
+    ]
+  },
+  {
+    "title": "Google Workspace (G Suit)",
+    "link": "/Google-Workspace-G-Suit",
+    "children": [
+      {
+        "title": "Google Account: Turn on 2-Step Verification (Two-factor Authentication)",
+        "link": "/Google-Workspace-G-Suit/Google-Account-2-Step-Verification"
+      },
+      {
+        "title": "Google Apps: Common Mobile Setup Issues",
+        "link": "/wiki/GSuit/common-mobile-setup-issues"
+      },
+      {
+        "title": "Google Apps: Set and Change Google Apps Password",
+        "link": "/wiki/GSuit/set-and-change-password"
+      },
+      {
+        "title": "Google Drive: Change Owners in Google Drive",
+        "link": "/Google-Workspace-G-Suit/Google-Drive/Transfer-Ownership"
+      },
+      {
+        "title": "NYU Calendar",
+        "link": "/wiki/GSuit/nyu-calendar",
+        "children": [
+          {
+            "title": "Accessing an NYU Calendar",
+            "link": "/wiki/GSuit/nyu-calendar/accessing-an-calendar"
+          },
+          {
+            "title": "Calendar Sharing",
+            "link": "/wiki/GSuit/nyu-calendar/calendar-sharing"
+          },
+          {
+            "title": "Manually Add A Calendar",
+            "link": "/wiki/GSuit/nyu-calendar/manually-add-a-calendar"
+          },
+          {
+            "title": "NYU Calendar/Email: Desktop Application and Mobile Device Setup",
+            "link": "/wiki/GSuit/nyu-calendar/desktop-application-and-mobile-device-setup"
+          },
+          {
+            "title": "Remove Infinite Recurrence Events",
+            "link": "/Wiki/%08GSuit/nyu-calender/remove-infinite-recurrence-events"
+          },
+          {
+            "title": "Requesting Access to An Individual, Group, Room, or Resource Calendar",
+            "link": "/wiki/GSuit/nyu-calendar/Request-to-access-individual-group-room-resource-calendar"
+          },
+          {
+            "title": "Resource Calendar Management",
+            "link": "/Wiki/%08GSuit/nyu-calender/resource-calendar-management"
+          },
+          {
+            "title": "Shared Calendar Resource",
+            "link": "/wiki/GSuit/nyu-calendar/shared-calendar-resource"
+          }
+        ]
+      },
+      {
+        "title": "NYU Email",
+        "link": "/wiki/GSuit/nyu-email",
+        "children": [
+          {
+            "title": "Add NYU Email Account to Apple Mail",
+            "link": "/wiki/GSuit/nyu-email/add-nyuemail-to-apple-device"
+          },
+          {
+            "title": "Desktop Application and Mobile Device Setup",
+            "link": "/wiki/GSuit/nyu-email/desktop-application-and-mobile-device-setup"
+          },
+          {
+            "title": "Setup for Desktop Applications",
+            "link": "/wiki/GSuit/nyu-email/setup-desktop-application"
+          },
+          {
+            "title": "Setup for Mobile Devices",
+            "link": "/wiki/GSuit/nyu-email/setup-mobile-devices"
+          }
+        ]
+      },
+      {
+        "title": "NYU Groups",
+        "link": "/wiki/GSuit/nyu-groups",
+        "children": [
+          {
+            "title": "Grouper",
+            "link": "/wiki/GSuit/nyu-groups/grouper",
+            "children": [
+              {
+                "title": "Administration Guide",
+                "link": "/wiki/GSuit/nyu-groups/grouper/administration-guide"
+              }
+            ]
+          },
+          {
+            "title": "Groups Management",
+            "link": "/wiki/GSuit/nyu-groups/groups-management"
+          },
+          {
+            "title": "Request and Management",
+            "link": "/wiki/GSuit/nyu-groups/request-and-management"
+          }
+        ]
+      },
+      {
+        "title": "NYU Team Drive",
+        "link": "/wiki/GSuit/nyu-team-drive",
+        "children": [
+          {
+            "title": "Auto-expiration Dates for Shared Links",
+            "link": "/wiki/GSuit/nyu-team-drive/auto-expiration-dates-for-shared-links"
+          },
+          {
+            "title": "Membership Types and Access Permissions",
+            "link": "/wiki/GSuit/nyu-team-drive/membership-types-and-access-permission"
+          },
+          {
+            "title": "Migrate Folders to Shared Drive",
+            "link": "/wiki/GSuit/nyu-team-drive/migrate-folders-to-shared-drive"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "IP Phone",
+    "link": "/IP-Phones",
+    "children": [
+      {
+        "title": "Classroom IP Telephone Speed Dial (SOP)",
+        "link": "/wiki/ipt/classroom-IP-telephone-speed-dial"
+      },
+      {
+        "title": "IP Phone Call Rules: Make Internal, Local, Long-Distance, and International Calls for Landline",
+        "link": "/IP-Phones/Call-Rules"
+      },
+      {
+        "title": "IP Telephony User Guide",
+        "link": "/IP-Phones/IP-Telephony-User-Guide"
+      }
+    ]
+  },
+  {
+    "title": "IT Asset Management (ITAM)",
+    "link": "/IT-Assets-Management-ITAM",
+    "children": [
+      {
+        "title": "IT Equipment Loan",
+        "link": "/IT-Assets-Management-ITAM/IT-equipment-loan",
+        "children": [
+          {
+            "title": "Equipment List",
+            "link": "/wiki/IT-asset-management-ITAM/IT-equipment-loan/IT-equipment-list"
+          },
+          {
+            "title": "IT Assets Loan System User Manual",
+            "link": "/IT-Assets-Management-ITAM/IT-equipment-loan/IT-Assets-Loan-System"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "IT Communication",
+    "link": "/IT-Communication",
+    "children": [
+      {
+        "title": "IT Announcement",
+        "link": "/wiki/communication/announcement",
+        "children": [
+          {
+            "title": "Newsletter (SOP)",
+            "link": "/wiki/communication/announcement/newsletter-sop"
+          },
+          {
+            "title": "IT Branding",
+            "link": "/wiki/communication/branding",
+            "children": [
+              {
+                "title": "Branding Strategy",
+                "link": "/wiki/communication/branding/strategy"
+              }
+            ]
+          },
+          {
+            "title": "IT Incident Management",
+            "link": "/wiki/communication/incident-management"
+          },
+          {
+            "title": "IT Knowledge Management",
+            "link": "/wiki/communication/knowledge-management",
+            "children": [
+              {
+                "title": "General Knowledge Base Guide (SOP)",
+                "link": "/wiki/communication/knowledge-management/general-kb-guide"
+              }
+            ]
+          },
+          {
+            "title": "IT ServiceLink",
+            "link": "/wiki/communication/servicelink"
+          },
+          {
+            "title": "IT Website",
+            "link": "/wiki/communication/website",
+            "children": [
+              {
+                "title": "Access Matrices in ITS Website",
+                "link": "/wiki/communication/website/access-matrices-in-its-website"
+              },
+              {
+                "title": "Website Serve Guideline",
+                "link": "/wiki/communication/website/website-serve-guideline"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "IT Navigation Page",
+    "link": "/IT-Navigation-Page",
+    "children": [
+      {
+        "title": "IT Request Service",
+        "link": "/wiki/IT-request-service",
+        "children": [
+          {
+            "title": "IT Internal Purchase",
+            "link": "/wiki/IT-request-service/IT-internal-purchase"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Multi-Factor Authentication (MFA)/Duo",
+    "link": "/Multi-Factor-Authentication-MFA",
+    "children": [
+      {
+        "title": "Enrolling in MFA and Installing Duo Mobile for a First-time User: Set Up an iOS/Android Smartphone (Recommended)",
+        "link": "/Multi-Factor-Authentication-MFA/Setup-Smartphone"
+      },
+      {
+        "title": "Enrolling in MFA and Installing Duo Mobile for a First-time User: Set Up an iOS/Android Tablet",
+        "link": "/Multi-Factor-Authentication-MFA/Setup-Tablet"
+      },
+      {
+        "title": "Enrolling in MFA for a First-time User: Set Up a Touch ID",
+        "link": "/Multi-Factor-Authentication-MFA/Setup-TouchID"
+      },
+      {
+        "title": "MFA Authentication",
+        "link": "/Multi-Factor-Authentication-MFA/Authentication",
+        "children": [
+          {
+            "title": "(Unpublished) MFA Authentication: Switching from an Office Landline Phone Call to the Duo Mobile Push Notification",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Landline-Call-Switch-Push-Notification"
+          },
+          {
+            "title": "Change an MFA Authentication Option",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Change-Authentication-Option"
+          },
+          {
+            "title": "Configure an Android Phone to Receive Duo Mobile Notifications from MFA",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Android-Receive-Notification"
+          },
+          {
+            "title": "Configure an iPhone to Receive Duo Mobile Notifications from MFA",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/iPhone-Receive-Notification"
+          },
+          {
+            "title": "Hardware Token - Requesting, Using, and Troubleshooting",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Hardware-Token"
+          },
+          {
+            "title": "MFA Authentication on the Various Phone and Device Option",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Various-Devices"
+          },
+          {
+            "title": "MFA: Authenticating with Bypass Code",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Bypass-Code"
+          },
+          {
+            "title": "MFA: Authenticating with Duo Push Notification (Recommended)",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Duo-Push-Notification"
+          },
+          {
+            "title": "MFA: Authenticating with Generated Passcode",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Generated-Passcodes"
+          },
+          {
+            "title": "MFA: Authenticating with Phone Call",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Phone-Call"
+          },
+          {
+            "title": "MFA: Authenticating with SMS Text Passcode",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/SMS"
+          },
+          {
+            "title": "MFA: Authenticating with Touch ID",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Touch-ID"
+          },
+          {
+            "title": "MFA: How to Log in Faster?",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Login-Fast"
+          },
+          {
+            "title": "MFA: Switch from Using Phone Calls to Duo Push",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Switch-from-Phone-Call-to-Duo-Push"
+          },
+          {
+            "title": "Requesting a Temporary Bypass Code",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Request-Bypaqss-Code"
+          },
+          {
+            "title": "Respond to a Duo Push from a Locked iOS Device Screen",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Respond-Duo-Push-from-Lock-Screen-iOS"
+          },
+          {
+            "title": "Set Duo Push as the Default Authentication Method",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Set-Duo-Push-Default-Authentication-Method"
+          }
+        ]
+      },
+      {
+        "title": "Using MFA while Traveling or Device Does Not Have Internet Access or Network Signal",
+        "link": "/Multi-Factor-Authentication-MFA/Traveling-or-No-Internet-Signal",
+        "children": [
+          {
+            "title": "Using MFA's \"Trust Browser\" Feature",
+            "link": "/Multi-Factor-Authentication-MFA/Authentication/Remembe-Me"
+          }
+        ]
+      },
+      {
+        "title": "MFA Common Errors and Troubleshooting",
+        "link": "/Multi-Factor-Authentication-MFA/Troubleshooting",
+        "children": [
+          {
+            "title": "Duo Mobile Error Message: \"Invalid Passcode\"",
+            "link": "/Multi-Factor-Authentication-MFA/Troubleshooting/Invalid-Passcode"
+          },
+          {
+            "title": "Duo Prompt Display Issues (iOS/Mac OS Content Restrictions)",
+            "link": "/Multi-Factor-Authentication-MFA/Troubleshooting/Prompt-Display"
+          },
+          {
+            "title": "Duo Push Notification is not working on Apple Watch",
+            "link": "/Multi-Factor-Authentication-MFA/Troubleshooting/Duo-Push-Apple-Watch"
+          },
+          {
+            "title": "MFA Account Locked Due to Failed Login Attempts",
+            "link": "/Multi-Factor-Authentication-MFA/Troubleshooting/Locked-Account"
+          },
+          {
+            "title": "No Longer to Receive a Duo Push Notification",
+            "link": "/Multi-Factor-Authentication-MFA/Troubleshooting/Duo-Push-No-Longer-Working"
+          },
+          {
+            "title": "Reporting a Lost or Stolen MFA Device",
+            "link": "/Multi-Factor-Authentication-MFA/Troubleshooting/Lost-Device"
+          },
+          {
+            "title": "Troubleshooting for Duo Mobile Push Notification Issues on iOS Devices",
+            "link": "/Multi-Factor-Authentication-MFA/Troubleshooting/Push-Notification-Issue-iOS"
+          },
+          {
+            "title": "Unable to Access Service Due to MFA Error",
+            "link": "/Multi-Factor-Authentication-MFA/Troubleshooting/Unable-Access"
+          }
+        ]
+      },
+      {
+        "title": "MFA/Duo Device Management",
+        "link": "/Multi-Factor-Authentication-MFA/Device-Management",
+        "children": [
+          {
+            "title": "(Unpublished) MFA: Change An Enrolled Device Name",
+            "link": "/Multi-Factor-Authentication-MFA/Device-Management/Change-Device-Name"
+          },
+          {
+            "title": "(Unpublished) Set, Update, or Disable a Default Authentication Method in Duo Mobile",
+            "link": "/Multi-Factor-Authentication-MFA/Device-Management/Set-Update-Disable-Authentication-Method"
+          },
+          {
+            "title": "Change a Phone, Phone Number, or SIM card in Duo Mobile",
+            "link": "/Multi-Factor-Authentication-MFA/Device-Management/Changing-Phone-Number-SIM"
+          },
+          {
+            "title": "MFA: Add Additional Devices in Duo Mobile",
+            "link": "/Multi-Factor-Authentication-MFA/Device-Management/Additional-Phone"
+          },
+          {
+            "title": "MFA: Reactivate Duo Mobile for an Existing Device",
+            "link": "/Multi-Factor-Authentication-MFA/Device-Management/Reactivate-Duo-Mobile"
+          },
+          {
+            "title": "MFA: Rename or Delete a Device",
+            "link": "/Multi-Factor-Authentication-MFA/Device-Management/Update-Remove-Device"
+          },
+          {
+            "title": "MFA: Set or Change a Default Device in Duo Mobile",
+            "link": "/Multi-Factor-Authentication-MFA/Device-Management/Set-Change-Default-Device"
+          },
+          {
+            "title": "Set Up Third-Party Accounts on Duo Mobile",
+            "link": "/Multi-Factor-Authentication-MFA/Device-Management/Set-Third-party-Account"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "NYU Box",
+    "link": "/NYU-Box",
+    "children": [
+      {
+        "title": "Box Applications and Add-ons",
+        "link": "/wiki/nyubox/applications-and-addons",
+        "children": [
+          {
+            "title": "Box Drive Installation and Use",
+            "link": "/wiki/nyubox/box-drive-intallation-use"
+          },
+          {
+            "title": "Permissions and Security Settings for Sensitive Data",
+            "link": "/wiki/nyubox/permissions-security-settings-sensitive-data"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "NYU Shanghai IT User Manual",
+    "link": "/NYUSH-IT-User-Manual",
+    "children": [
+      {
+        "title": "Contract Review User Guide",
+        "link": "/NYUSH-IT-User-Manual/Contract-Review"
+      },
+      {
+        "title": "Guide for Reviewing Student Bank Account & Reimbursement Request",
+        "link": "/NYUSH-IT-User-Manual/Student-Reimbursement-Request-Process-Reviewing-Student-Bank-Account-Reimbursement-Request"
+      },
+      {
+        "title": "HR Smart Cabinet System Management  (HR and IT Internal)",
+        "link": "/NYUSH-IT-User-Manual/HR-Smart-Cabinet-System-Management-Internal",
+        "children": [
+          {
+            "title": "HR Smart Cabinet User Guide - HR Internal",
+            "link": "/NYUSH-IT-User-Manual/HR-Smart-Cabinet/HR-Internal-Manual"
+          },
+          {
+            "title": "HR Smart Cabinet User Guide - Pick Up a Document from HR",
+            "link": "/NYUSH-IT-User-Manual/HR-Smart-Cabinet/Pick-Up-Doc-From-HR"
+          },
+          {
+            "title": "Java Web Service SOAP Message (Chinese Version)",
+            "link": "/wiki/nyush-it-user-manual/web-service-java"
+          }
+        ]
+      },
+      {
+        "title": "Math Conference 2022 Website User Guide",
+        "link": "/NYUSH-IT-User-Manual/Math-Conference-Website",
+        "children": [
+          {
+            "title": "Mixed Mode Teaching",
+            "link": "/wiki/nyush-it-user-manual/mixed-mode-teaching"
+          }
+        ]
+      },
+      {
+        "title": "NYU Shanghai CCI Website User Guide",
+        "link": "/NYUSH-IT-User-Manual/CCI-Website"
+      },
+      {
+        "title": "NYU Shanghai IT Services Orientation Handbook",
+        "link": "/NYUSH-IT-User-Manual/Services-Orientation-Handbook"
+      },
+      {
+        "title": "Online Payment (Chinese Version)",
+        "link": "/NYUSH-IT-User-Manual/Online-Payment"
+      },
+      {
+        "title": "Portable Wireless PA System User Manual",
+        "link": "/NYUSH-IT-User-Manual/Portable-Wireless-PA-System"
+      },
+      {
+        "title": "Public Computer Management User Guide",
+        "link": "/NYUSH-IT-User-Manual/Public-Computer-Management"
+      },
+      {
+        "title": "RedGiant Volume Subscription User Guide",
+        "link": "/NYUSH-IT-User-Manual/Redgiant-Volume-Subscription-Guide"
+      },
+      {
+        "title": "Student Reimbursement Request Process - Full Version",
+        "link": "/NYUSH-IT-User-Manual/Student-Reimbursement-Request-Process-Full-Version"
+      },
+      {
+        "title": "Student Reimbursement Request Process User Guide - Dean's Initiatives",
+        "link": "/NYUSH-IT-User-Manual/Student-Reimbursement-Request-Process-Dean-Initiatives"
+      },
+      {
+        "title": "Student Reimbursement Request Process User Guide - RA & Student Works",
+        "link": "/NYUSH-IT-User-Manual/Student-Reimbursement-Request-Process-RA-Student-Works"
+      },
+      {
+        "title": "Student Reimbursement Request Process User Guide - Student Clubs & Organizations",
+        "link": "/NYUSH-IT-User-Manual/Student-Reimbursement-Request-Process-Student-Clubs-Organizations"
+      },
+      {
+        "title": "User Guide - Cristal Ball and ThreePlan on VCL",
+        "link": "/NYUSH-IT-User-Manual/Cristal-Ball-ThreePlan-VCL"
+      },
+      {
+        "title": "Video Camera VXF990 and VX980 User Manual",
+        "link": "/NYUSH-IT-User-Manual/Video-Camera"
+      },
+      {
+        "title": "NYU Shanghai IT WiKi",
+        "link": "/wiki/WiKi",
+        "children": [
+          {
+            "title": "Draft Article",
+            "link": "/wiki/WiKi/user-guide/draft-article",
+            "children": [
+              {
+                "title": "Draft FAQ",
+                "link": "/wiki/WiKi/user-guide/draft-FAQ"
+              }
+            ]
+          },
+          {
+            "title": "Meeting Minutes",
+            "link": "/wiki/WiKi/meeting-minutes"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Near Field Communication (NFC)",
+    "link": "/NFC",
+    "children": [
+      {
+        "title": "Difference between NFC and Bluetooth",
+        "link": "/NFC/Digital-Campus-Card/Difference-Bluetooth"
+      },
+      {
+        "title": "NFC Access Control System",
+        "link": "/NFC/Access-Control"
+      },
+      {
+        "title": "NFC Campus Card",
+        "link": "/NFC/Digital-Campus-Card",
+        "children": [
+          {
+            "title": "NFC Campus Card Quick Guide - Android Smartphones",
+            "link": "/NFC/Digital-Campus-Card/Adding-to-Android-Mobile-Quick-Guide"
+          },
+          {
+            "title": "NFC Campus Card Quick Guide - iPhone",
+            "link": "/NFC/Digital-Campus-Card/Adding-to-iPhone-Quick-Guide"
+          },
+          {
+            "title": "NFC Campus Card User Manual - Android Smartphones",
+            "link": "/NFC/Digital-Campus-Card/Adding-to-Android-Smartphones"
+          },
+          {
+            "title": "NFC Campus Card User Manual - iPhone",
+            "link": "/NFC/Digital-Campus-Card/Adding-to-iPhone"
+          }
+        ]
+      },
+      {
+        "title": "NFC Campus Card: Conference Room Reservation",
+        "link": "/NFC/NFC-Conference-Room-Reservation"
+      },
+      {
+        "title": "NFC Campus Card: Dining and Vending",
+        "link": "/NFC/NFC-Dining-Vending"
+      },
+      {
+        "title": "NFC Campus Card: Printing Service",
+        "link": "/NFC/NFC-Printing-Service"
+      }
+    ]
+  },
+  {
+    "title": "NetID and Password",
+    "link": "/Netid-and-Password",
+    "children": [
+      {
+        "title": "Hire Non-Employee",
+        "link": "/wiki/netid-and-password/hire-non-emplpyee",
+        "children": [
+          {
+            "title": "Introduction and Activation",
+            "link": "/wiki/netid-and-password/introduction-and-activation"
+          },
+          {
+            "title": "Password Requirements and Security Tips",
+            "link": "/wiki/netid-and-password/password-requirements-and-security-tips"
+          },
+          {
+            "title": "Resetting Password",
+            "link": "/wiki/netid-and-password/resetting-password"
+          }
+        ]
+      },
+      {
+        "title": "Synchronize Active Directory and NetID Passwords (LDAP)",
+        "link": "/Netid-and-Password/Synchronize-Active-Directory-NetID-Passwords"
+      }
+    ]
+  },
+  {
+    "title": "Printing and Advanced Printing",
+    "link": "/Printing",
+    "children": [
+      {
+        "title": "Multifunction Printer: Fax",
+        "link": "/Printing/Multifunction-Printer-Fax",
+        "children": [
+          {
+            "title": "Cancelling Fax Sending",
+            "link": "/Printing/Multifunction-Printer-Fax/Cancelling-Sending"
+          }
+        ]
+      },
+      {
+        "title": "Multifunction Printer: Photocopying",
+        "link": "/Printing/Multifunction-Printer-Photocopying"
+      },
+      {
+        "title": "Multifunction Printer: Scan or Copy Documents on the Platen Glass",
+        "link": "/Printing/Multifunction-Printer-Use-Platen-Glass"
+      },
+      {
+        "title": "Multifunction Printer: Scanning",
+        "link": "/Printing/Multifunction-Printer-Scanning",
+        "children": [
+          {
+            "title": "Scan Two-sided Documents",
+            "link": "/Printing/Multifunction-Printer-Scanning/Two-sided-Scanning"
+          }
+        ]
+      },
+      {
+        "title": "Multifunction Printer: Stapling",
+        "link": "/Printing/Multifunction-Printer-Stapling"
+      },
+      {
+        "title": "Printer Driver Installation for Windows",
+        "link": "/Printing/Printer-Driver-Installation-Windows"
+      },
+      {
+        "title": "Printer Driver Installation for macOS",
+        "link": "/Printing/Printer-Driver-Installation-macOS"
+      },
+      {
+        "title": "Printer Locations",
+        "link": "/Printing/Printer-Locations"
+      },
+      {
+        "title": "Printing Service: Change Black and White Documents in Color",
+        "link": "/Printing/Change-BW-in-Color"
+      },
+      {
+        "title": "Printing Service: Color Printing",
+        "link": "/Printing/Color"
+      },
+      {
+        "title": "Printing Service: Near Field Communication(NFC) Printing",
+        "link": "/Printing/NFC-Printing"
+      },
+      {
+        "title": "Printing Service: Pages per Sheet Printing",
+        "link": "/Printing/Pages-per-Sheet"
+      },
+      {
+        "title": "Printing Service: Poster Printing",
+        "link": "/Printing/Poster"
+      },
+      {
+        "title": "Printing Service: Release a Printing Job",
+        "link": "/Printing/Release-Printing-Jobs"
+      },
+      {
+        "title": "Printing Service: Request a 3D Print",
+        "link": "/Printing/3D-Request"
+      },
+      {
+        "title": "Printing Service: Single-sided Printing and Double-sided Printing",
+        "link": "/Printing/Single-sided-Double-sided"
+      },
+      {
+        "title": "Printing from a Windows Computer",
+        "link": "/Printing/Personal-Printing-Windows"
+      },
+      {
+        "title": "Printing from a macOS Computer",
+        "link": "/Printing/Personal-Printing-macOS"
+      },
+      {
+        "title": "Quick Start Guide: How to Send Print Jobs and Start Printing?",
+        "link": "/Printing/Quick-Start-Guide-Send-Print-Jobs"
+      },
+      {
+        "title": "Reduce Printing Costs and Save Paper",
+        "link": "/Printing/Paperless"
+      },
+      {
+        "title": "Request for Adding Printing Allowance to a Group Users (INTERNAL)",
+        "link": "/Printing/Printing-Allowance-Request-Instruction"
+      },
+      {
+        "title": "Request for Adding Printing Allowance to a Group Users SOP (INTERNAL)",
+        "link": "/Printing/Printing-Allowance-Request-SOP"
+      },
+      {
+        "title": "Troubleshooting: Removing Jammed Paper or Original Document",
+        "link": "/Printing/Troubleshooting-Jammed-Paper-or-Original"
+      },
+      {
+        "title": "Using Email-to-Print on a Mobile / Mobile Print",
+        "link": "/Printing/Email-to-Print-Mobile"
+      },
+      {
+        "title": "Using Email-to-Print on a Personal Computer",
+        "link": "/Printing/Email-to-Print-Personal-Computer"
+      },
+      {
+        "title": "Using Email-to-Print: Add an Additional Email Address for Mobile Print",
+        "link": "/Printing/Email-to-Print-Add-Additional-Email-Address"
+      },
+      {
+        "title": "Using My Print Center",
+        "link": "/Printing/My-Print-Center"
+      },
+      {
+        "title": "Residence Halls Support",
+        "link": "/wiki/residence-hall-support"
+      }
+    ]
+  },
+  {
+    "title": "Security and Policies",
+    "link": "/Security-and-Policies"
+  },
+  {
+    "title": "Service Desk Support",
+    "link": "/Service-Desk-Support",
+    "children": [
+      {
+        "title": "Answer Incoming Client Calls (SOP)",
+        "link": "/wiki/service-desk-support/answer-incoming-client-calls",
+        "children": [
+          {
+            "title": "Computer Services",
+            "link": "/wiki/service-desk-support/computer-services",
+            "children": [
+              {
+                "title": "Computer Encryption",
+                "link": "/wiki/service-desk-support/computer-services/computer-encryption"
+              },
+              {
+                "title": "Computer Image Creation (SOP)",
+                "link": "/wiki/service-desk-support/computer-services/computer-image-creation"
+              },
+              {
+                "title": "Computer Image Deployment (SOP)",
+                "link": "/wiki/service-desk-support/computer-services/computer-image-deployment"
+              },
+              {
+                "title": "Computer Installation",
+                "link": "/wiki/service-desk-support/computer-services/computer-installation"
+              },
+              {
+                "title": "Computer Notice (Staff Version)",
+                "link": "/wiki/service-desk-support/computer-services/computer-notice-staff"
+              },
+              {
+                "title": "Computer(Lab/Public) Schedule Maintenance (SOP)",
+                "link": "/wiki/service-desk-support/computer-services/public-lab-computer-schedule-maintenance"
+              },
+              {
+                "title": "Media Access Control Address (MAC Address) (SOP)",
+                "link": "/wiki/service-desk-support/computer-services/media-control-access-mac-address"
+              },
+              {
+                "title": "Non-Volatile Random-Access Memory (NVRAM)",
+                "link": "/wiki/service-desk-support/computer-services/nvram"
+              },
+              {
+                "title": "Parameter Ram (PRAM)",
+                "link": "/wiki/service-desk-support/computer-services/pram"
+              },
+              {
+                "title": "Reset SMC for Mac Desktop",
+                "link": "/wiki/service-desk-support/computer-services/Reset-SMC-Mac-Desktop"
+              },
+              {
+                "title": "Reset SMC for Mac Laptops with a Non-removable Battery",
+                "link": "/wiki/service-desk-support/computer-services/Reset-SMC-Mac-Non-Removable-Battery"
+              },
+              {
+                "title": "Reset SMC for Mac Laptops with a Removable Battery",
+                "link": "/wiki/service-desk-support/computer-services/Reset-SMC-Mac-Removable-Battery"
+              },
+              {
+                "title": "Reset the NVRAM and PRAM on a Mac Computer",
+                "link": "/wiki/service-desk-support/computer-services/Nvram-Pram-Reset"
+              },
+              {
+                "title": "Reset the SMC on Mac Computers have the Apple T2 Security Chip",
+                "link": "/wiki/service-desk-support/computer-services/Mac-Apple-T2-Security-Chip"
+              },
+              {
+                "title": "Reset the SMC on Mac Computers that Do NOT have the Apple T2 Security Chip",
+                "link": "/wiki/service-desk-support/computer-services/Mac-Without-Apple-T2-Security-Chip"
+              },
+              {
+                "title": "Reset the SMC on Mac Computers with Apple Silicon",
+                "link": "/wiki/service-desk-support/computer-services/Reset-SMC-Computer-Apple-Silicon"
+              },
+              {
+                "title": "System Management Controller (SMC)",
+                "link": "/wiki/service-desk-support/computer-services/SMC"
+              },
+              {
+                "title": "Use DNS to Fix Unloading Web Pages (Mac and Windows)",
+                "link": "/wiki/service-desk-support/computer-services/use-DNS-fix-unloading-webpages"
+              }
+            ]
+          },
+          {
+            "title": "Mobile Device Services",
+            "link": "/wiki/service-desk-support/mobile-device-services",
+            "children": [
+              {
+                "title": "New iPhone Orientation (Faculty) (SOP)",
+                "link": "/wiki/service-desk-support/mobile-devices-services/new-iphone-services-faculty"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Software and Application",
+    "link": "/Software-and-Application",
+    "children": [
+      {
+        "title": "ATLAS.ti",
+        "link": "/Software-and-Application/ATLASti"
+      },
+      {
+        "title": "Academic Software License Request Guide",
+        "link": "/Software-and-Application/Request-Guide"
+      },
+      {
+        "title": "Adobe Creative Cloud (Adobe CC)",
+        "link": "/Software-and-Application/AdobeCC",
+        "children": [
+          {
+            "title": "Adobe Creative Cloud Troubleshooting (Internal)",
+            "link": "/Software-and-Application/AdobeCC/Troubleshooting-Internal"
+          },
+          {
+            "title": "Adobe Creative Cloud User Procedure: Public Computer, SDL, and NUL(INTERNAL)",
+            "link": "/Software-and-Application/AdobeCC/User-Procedure-PublicComputer-SDL-NUL"
+          },
+          {
+            "title": "Adobe Creative Cloud: \"You don't have access to manage apps\" Error after Registering Adobe CC (macOS & Windows)",
+            "link": "/Software-and-Application/AdobeCC/No-Access-to-Manage-Apps"
+          },
+          {
+            "title": "Download and Install Adobe Creative Cloud (Adobe CC) Application for Mac",
+            "link": "/Software-and-Application/AdobeCC/Download-and-Install-macOS"
+          },
+          {
+            "title": "Download and Install Adobe Creative Cloud (Adobe CC) Application for Windows",
+            "link": "/Software-and-Application/AdobeCC/Download-and-Install-Windows"
+          }
+        ]
+      },
+      {
+        "title": "Agisoft MetashapePro",
+        "link": "/Software-and-Application/Agisoft-Metashape",
+        "children": [
+          {
+            "title": "Agisoft MetashapePro: Licensing Instruction for MacOS (Internal)",
+            "link": "/Software-and-Application/Agisoft-Metashape/Licensing-Instruction-macOS"
+          },
+          {
+            "title": "Agisoft MetashapePro: Licensing Instruction for Windows (Internal)",
+            "link": "/Software-and-Application/Agisoft-Metashape/Licensing-Instruction-Windows"
+          }
+        ]
+      },
+      {
+        "title": "Apple - Compressor",
+        "link": "/Software-and-Application/Apple-Compressor"
+      },
+      {
+        "title": "Apple - Final Cut Pro",
+        "link": "/Software-and-Application/Apple-Final-Cut-Pro"
+      },
+      {
+        "title": "Apple - Logic Pro",
+        "link": "/Software-and-Application/Apple-LogicPro"
+      },
+      {
+        "title": "Apple - Motion",
+        "link": "/Software-and-Application/Apple-Motion"
+      },
+      {
+        "title": "ArcGIS",
+        "link": "/Software-and-Application/Esri-ArcGIS",
+        "children": [
+          {
+            "title": "ArcGIS: ArcMap Licensing Instruction - Windows Only (INTERNAL)",
+            "link": "/Software-and-Application/Esri-ArcGIS/Licensing-Instruction"
+          },
+          {
+            "title": "Authorization Method Switching (Desktop 10.x)",
+            "link": "/Software-and-Application/Esri-ArcGIS/Authorization-Method-Switching"
+          }
+        ]
+      },
+      {
+        "title": "AutoDesk",
+        "link": "/Software-and-Application/AutoDesk"
+      },
+      {
+        "title": "Avid Sibelius",
+        "link": "/Software-and-Application/Avid-Sibelius"
+      },
+      {
+        "title": "BitLocker",
+        "link": "/Software-and-Application/BitLocker",
+        "children": [
+          {
+            "title": "Recovery Key",
+            "link": "/Software-and-Application/BitLocker/Recovery-Key"
+          },
+          {
+            "title": "Test Steps",
+            "link": "/Software-and-Application/BitLocker/Test-Steps"
+          }
+        ]
+      },
+      {
+        "title": "Bloomberg Station",
+        "link": "/Software-and-Application/Bloomberg-Station-Setup"
+      },
+      {
+        "title": "Brightspace",
+        "link": "/Software-and-Application/Brightspace"
+      },
+      {
+        "title": "Cisco Jabber",
+        "link": "/Software-and-Application/Cisco-Jabber",
+        "children": [
+          {
+            "title": "Cisco Jabber Call Rules: Make Internal, Local, Long-Distance, and International Calls for Windows/macOS and iPhone/Android",
+            "link": "/Software-and-Application/Cisco-Jabber/Calls-Rules"
+          },
+          {
+            "title": "Cisco Jabber Installation: User Guide for Windows/macOS and iPhone/Android",
+            "link": "/Software-and-Application/Cisco-Jabber/Installation"
+          },
+          {
+            "title": "Cisco Jabber Set-up: Instruction for Windows/macOS and iPhone/Android",
+            "link": "/Software-and-Application/Cisco-Jabber/Setup"
+          }
+        ]
+      },
+      {
+        "title": "CyberArk",
+        "link": "/Software-and-Application/CyberArk"
+      },
+      {
+        "title": "Cycling '74 Max",
+        "link": "/Software-and-Application/Cycling74Max"
+      },
+      {
+        "title": "Deep Freeze",
+        "link": "/Software-and-Application/Deep-Freeze"
+      },
+      {
+        "title": "Handshake Import",
+        "link": "/Software-and-Application/Handshake-Import"
+      },
+      {
+        "title": "IBM SPSS Statistics",
+        "link": "/Software-and-Application/IBM-SPSS-Statistics",
+        "children": [
+          {
+            "title": "IBM SPSS Statistics: Licensing Instruction for Mac (Version 22/23/24/25/26/27/28)",
+            "link": "/Software-and-Application/IBM-SPSS-Statistics/Licensing-Guide-macOS"
+          },
+          {
+            "title": "IBM SPSS Statistics: Licensing Instruction for Windows (Version 22/23/24/25/26/27/28)",
+            "link": "/Software-and-Application/IBM-SPSS-Statistics/Licensing-Guide-Windows"
+          }
+        ]
+      },
+      {
+        "title": "JMP Pro",
+        "link": "/Software-and-Application/JMPPro"
+      },
+      {
+        "title": "Jamf",
+        "link": "/Software-and-Application/Jamf",
+        "children": [
+          {
+            "title": "Enabling Single Sign-On(SSO) in Jamf Pro (INTERNAL)",
+            "link": "/Software-and-Application/Jamf/Enabling-SSO-in-Jamfpro-Internal"
+          }
+        ]
+      },
+      {
+        "title": "MATLAB",
+        "link": "/Software-and-Application/MatLab",
+        "children": [
+          {
+            "title": "MATLAB: Installation Guide (INTERNAL)",
+            "link": "/Software-and-Application/MatLab/Installation-Guide-Internal"
+          },
+          {
+            "title": "MATLAB: Licensing Instruction for MacOS",
+            "link": "/Software-and-Application/MatLab/Licensing-Instruction-macOS"
+          },
+          {
+            "title": "MATLAB: Licensing Instruction for Windows",
+            "link": "/Software-and-Application/MatLab/Licensing-Instruction-Windows"
+          },
+          {
+            "title": "MATLab: Installation Guide - Linux (INTERNAL)",
+            "link": "/Software-and-Application/MatLab/Installation-Guide-Linux",
+            "children": [
+              {
+                "title": "MATLab: License Server Update (INTERNAL)",
+                "link": "/Software-and-Application/MatLab/Licensing-Instruction-macOS/License-Server-Update-Internal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "MAXQDA",
+        "link": "/Software-and-Application/MAXQDA",
+        "children": [
+          {
+            "title": "MAXQDA: Licensing Instruction for Mac",
+            "link": "/Software-and-Application/MAXQDA/Licensing-Instruction-macOS"
+          },
+          {
+            "title": "MAXQDA: Licensing Instruction for Windows",
+            "link": "/Software-and-Application/MAXQDA/Licensing-Instruction-Windows"
+          }
+        ]
+      },
+      {
+        "title": "Microsoft Imagine Application",
+        "link": "/Software-and-Application/Microsoft-Imagine-Application"
+      },
+      {
+        "title": "Microsoft Office 365 Education",
+        "link": "/Software-and-Application/Microsoft-Office365-Education",
+        "children": [
+          {
+            "title": "NYU Office 365 Activation Error Message: \"This username may be incorrect\"",
+            "link": "/Software-and-Application/Microsoft-Office365-Education/Activation-Error"
+          }
+        ]
+      },
+      {
+        "title": "Microsoft Office Project",
+        "link": "/Software-and-Application/Microsoft-Office-Project"
+      },
+      {
+        "title": "Microsoft Office Visio",
+        "link": "/Software-and-Application/Microsoft-Office-Visio"
+      },
+      {
+        "title": "Minitab",
+        "link": "/Software-and-Application/Minitab"
+      },
+      {
+        "title": "Notion",
+        "link": "/Software-and-Application/Notion"
+      },
+      {
+        "title": "OBS Studio",
+        "link": "/Software-and-Application/OBS-Studio"
+      },
+      {
+        "title": "PSpice Student",
+        "link": "/Software-and-Application/PSpice-Student"
+      },
+      {
+        "title": "Panorama Education",
+        "link": "/Software-and-Application/Panorama"
+      },
+      {
+        "title": "Parallels Desktop for Mac Business Edition",
+        "link": "/Software-and-Application/Parallels-Desktop-macOS-Business"
+      },
+      {
+        "title": "Process On",
+        "link": "/Software-and-Application/Process-On"
+      },
+      {
+        "title": "Rhino",
+        "link": "/Software-and-Application/Rhino"
+      },
+      {
+        "title": "SAS",
+        "link": "/Software-and-Application/SAS"
+      },
+      {
+        "title": "StarRez",
+        "link": "/Software-and-Application/StarRez",
+        "children": [
+          {
+            "title": "Undergraduate Academic Year Housing Application",
+            "link": "/Software-and-Application/StarRez/Undergraduate-Housing-Application"
+          }
+        ]
+      },
+      {
+        "title": "Stata",
+        "link": "/Software-and-Application/Stata",
+        "children": [
+          {
+            "title": "Stata: Licensing Instruction (Internal)",
+            "link": "/Software-and-Application/Stata/Licensing-Instruction"
+          }
+        ]
+      },
+      {
+        "title": "Tableau",
+        "link": "/Software-and-Application/Tableau"
+      },
+      {
+        "title": "Wolfram Research Software Suite - Mathematica",
+        "link": "/Software-and-Application/Mathematica",
+        "children": [
+          {
+            "title": "Mathematica: Software Licensing for Windows",
+            "link": "/Software-and-Application/Mathematica/Licensing-Instruction-Windows"
+          },
+          {
+            "title": "Mathematica: Software Licensing for macOS",
+            "link": "/Software-and-Application/Mathematica/Licensing-Instruction-MacOS"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Space Reservation System",
+    "link": "/Space-Reservation-System",
+    "children": [
+      {
+        "title": "Classroom Reservation (One-time) User Guide",
+        "link": "/Space-Reservation-System/Classroom-Reservation-One-Time"
+      },
+      {
+        "title": "Classroom Reservation (Repeating/Recurrence) User Guide",
+        "link": "/Space-Reservation-System/Classroom-Reservation-Recurrence"
+      },
+      {
+        "title": "Text Messaging System (SMS)",
+        "link": "/wiki/sms"
+      }
+    ]
+  },
+  {
+    "title": "Virtual Computer Lab (VCL)",
+    "link": "/Virtual-Computer-Lab-VCL",
+    "children": [
+      {
+        "title": "Change the VCL Desktop Window Size",
+        "link": "/Virtual-Computer-Lab-VCL/Change-Desktop-Window-Size"
+      },
+      {
+        "title": "Connecting and Using the VCL",
+        "link": "/Virtual-Computer-Lab-VCL/Access-Login"
+      },
+      {
+        "title": "Properly Log Out of an Open VCL Session",
+        "link": "/Virtual-Computer-Lab-VCL/Properly-Logout"
+      },
+      {
+        "title": "Saving Files in VCL",
+        "link": "/Virtual-Computer-Lab-VCL/Files-Saving"
+      },
+      {
+        "title": "USB Does Not Appear in the VCL Desktop",
+        "link": "/Virtual-Computer-Lab-VCL/USB-Not-Appear"
+      },
+      {
+        "title": "VCL Citrix Workspace Authentication",
+        "link": "/Virtual-Computer-Lab-VCL/Citrix-Workspace-Authentication"
+      },
+      {
+        "title": "VCL Settings: Lock or Unlock the Desktop",
+        "link": "/Virtual-Computer-Lab-VCL/Lock-Unlock-Desktop"
+      },
+      {
+        "title": "VCL Settings: Set Preferences",
+        "link": "/Virtual-Computer-Lab-VCL/Preferences"
+      },
+      {
+        "title": "VCL: Available Software and Applications",
+        "link": "/Virtual-Computer-Lab-VCL/Available-Software-Applications"
+      },
+      {
+        "title": "VCL: Eligibility",
+        "link": "/Virtual-Computer-Lab-VCL/Eligiblity"
+      },
+      {
+        "title": "VCL: Files Management in Google Drive",
+        "link": "/Virtual-Computer-Lab-VCL/Files-Management"
+      },
+      {
+        "title": "VCL: Idle Session Timeout",
+        "link": "/Virtual-Computer-Lab-VCL/Idle-Session-Timeout"
+      },
+      {
+        "title": "VCL: System Requirement",
+        "link": "/Virtual-Computer-Lab-VCL/System-Requiement"
+      }
+    ]
+  },
+  {
+    "title": "Virtual Private Network (VPN)",
+    "link": "/Virtual-Private-Network-VPN",
+    "children": [
+      {
+        "title": "Android VPN WITHOUT Play Store",
+        "link": "/wiki/virtual-private-network-vpn/installation/android-without-play-store"
+      },
+      {
+        "title": "Login to VPN with MFA/Duo Mobile",
+        "link": "/Virtual-Private-Network-VPN/Login-Duo",
+        "children": [
+          {
+            "title": "Ubuntu/Linux OS",
+            "link": "/wiki/virtual-private-network-vpn/installation/ubuntu-linuxos"
+          }
+        ]
+      },
+      {
+        "title": "VPN Eligibility",
+        "link": "/Virtual-Private-Network-VPN/Eligibility",
+        "children": [
+          {
+            "title": "Real-name Authentication",
+            "link": "/wiki/virtual-private-network-vpn/eligibility/real-name-authentication"
+          },
+          {
+            "title": "VPN Eligibility: Alumni",
+            "link": "/Virtual-Private-Network-VPN/Eligibility/Alumni"
+          },
+          {
+            "title": "VPN Eligibility: Graduate Students (Early Access)",
+            "link": "/Virtual-Private-Network-VPN/Eligibility/Graduates-Early-Access"
+          },
+          {
+            "title": "VPN Eligibility: Graduate Students",
+            "link": "/Virtual-Private-Network-VPN/Eligibility/Graduates"
+          }
+        ]
+      },
+      {
+        "title": "VPN Troubleshooting",
+        "link": "/Virtual-Private-Network-VPN/Troubleshooting",
+        "children": [
+          {
+            "title": "VPN Speed Test",
+            "link": "/Virtual-Private-Network-VPN/Troubleshooting/Speed-Test"
+          },
+          {
+            "title": "Windows 10 version 1903",
+            "link": "/Virtual-Private-Network-VPN/Troubleshooting/Windows10-Version1903"
+          }
+        ]
+      },
+      {
+        "title": "VPN Uninstallation: Windows",
+        "link": "/Virtual-Private-Network-VPN/Uninstallation-Windows"
+      },
+      {
+        "title": "VPN Uninstallation: macOS",
+        "link": "/Virtual-Private-Network-VPN/Uninstallation-macOS"
+      },
+      {
+        "title": "VPN: Installing and Using VPN on a Windows Computer",
+        "link": "/Virtual-Private-Network-VPN/Installation-Windows"
+      },
+      {
+        "title": "VPN: Installing and Using VPN on a macOS Computer",
+        "link": "/Virtual-Private-Network-VPN/Installation-macOS"
+      },
+      {
+        "title": "VPN: Installing and Using VPN on an Android Device",
+        "link": "/Virtual-Private-Network-VPN/Installation-Android"
+      },
+      {
+        "title": "VPN: Installing and Using VPN on an iPhone/iPad",
+        "link": "/Virtual-Private-Network-VPN/Installation-iPhone-iPad"
+      }
+    ]
+  },
+  {
+    "title": "WeChat Enterprise",
+    "link": "/WeChat-Enterprise",
+    "children": [
+      {
+        "title": "Community Module Creation",
+        "link": "/WeChat-Enterprise/Community-Module-Creation"
+      },
+      {
+        "title": "WeChat Enterprise: Ask ITS",
+        "link": "/WeChat-Enterprise/Ask-ITS"
+      },
+      {
+        "title": "WeChat Enterprise: E-Courier Expres Service",
+        "link": "/WeChat-Enterprise/E-Courier"
+      },
+      {
+        "title": "WeChat Enterprise: Enable/Disable Service Notification",
+        "link": "/WeChat-Enterprise/Service-Notification"
+      },
+      {
+        "title": "WeChat Enterprise: First-time User Enrollment",
+        "link": "/WeChat-Enterprise/Downloading-Enrollment"
+      },
+      {
+        "title": "怎么取消企业微信中微信账号的绑定？微信和企业微信怎么取消关联",
+        "link": "/WeChat-Enterprise/userupdate"
+      }
+    ]
+  },
+  {
+    "title": "Wireless Network",
+    "link": "/Wireless-Network",
+    "children": [
+      {
+        "title": "Allot",
+        "link": "/Wireless-Network/Allot"
+      },
+      {
+        "title": "CommScope imVision",
+        "link": "/Wireless-Network/imVision",
+        "children": [
+          {
+            "title": "Eduroam",
+            "link": "/wiki/wireless-network/eduroam"
+          },
+          {
+            "title": "Eligibility",
+            "link": "/wiki/wireless-network/eligibility-for-use-wifi-eduroam"
+          }
+        ]
+      },
+      {
+        "title": "Network Attached Storage (NAS)",
+        "link": "/Wireless-Network/NAS",
+        "children": [
+          {
+            "title": "Network Connections Troubleshooting",
+            "link": "/wiki/wireless/network-connections-troubleshooting"
+          },
+          {
+            "title": "Troubleshooting Connection or Reception Problems",
+            "link": "/wiki/wireless-network/troubleshooting-connection-or-reception-problems"
+          },
+          {
+            "title": "Troubleshooting Tips for Support Analysts",
+            "link": "/wiki/wireless-network/troubleshooting-tips-for-support-analysts"
+          }
+        ]
+      },
+      {
+        "title": "WANs and Lans Firewall",
+        "link": "/Wireless-Network/Lans-Wans-Firewall",
+        "children": [
+          {
+            "title": "Wireless Connection Speed Testing",
+            "link": "/wiki/wireless-network/connection-speed-testing"
+          }
+        ]
+      },
+      {
+        "title": "Workflow Platform",
+        "link": "/wiki/workflow-platform"
+      }
+    ]
+  },
+  {
+    "title": "Faqs",
+    "link": "/faqs"
+  }
+]

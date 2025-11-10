@@ -1,0 +1,95 @@
+.access-card-block-wrapper {
+  width: 100%;
+}
+
+.access-card-block-wrapper > .access-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 39px;
+}
+
+.access-navigation > .access-navigation-left {
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 28px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.access-navigation > .access-navigation-right {
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #686868;
+  cursor: pointer;
+}
+
+.access-navigation > .access-navigation-right:hover {
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: black;
+}
+
+.access-card-items-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -8px;
+}
+
+.access-card-items-wrapper > .access-card-item {
+  background-color: white;
+  padding: 24px;
+  border-radius: 25px;
+  width: calc(33.333% - 16px);
+  position: relative;
+  height: 230px;
+  margin: 8px;
+}
+
+.access-card-items-wrapper > .access-card-item > .access-card-title {
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  line-height: 128%;
+  letter-spacing: 0%;
+  margin-bottom: 16px;
+}
+.access-card-items-wrapper > .access-card-item > .access-card-icon {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.access-card-items-wrapper > .access-card-item > .access-card-description {
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 128%;
+  letter-spacing: 0%;
+  width: 100%;
+  margin-top: 16px;
+  color: #7e7e7e;
+}
+
+.access-card-items-wrapper > .access-card-item > .access-card-plus-container {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+}
+
+.access-card-items-wrapper > .access-card-item > .access-card-plus-container > .access-card-plus {
+  background-color: black;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+}

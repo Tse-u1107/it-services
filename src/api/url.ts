@@ -1,4 +1,5 @@
 export const serviceList = 'api/home/services'
+export const menuLinks = 'api/home/menu_links'
 export const jsonApi = 'jsonapi/node/page?filter[title][value]='
 export const search = 'api/search'
 
