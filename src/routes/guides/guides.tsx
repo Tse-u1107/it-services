@@ -1,70 +1,33 @@
 import { useState, useEffect } from 'react';
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import LeftSidebar from './components/leftNavBar/leftSidebar';
-import { sampleNavItems } from './components/sample';
 import ContentLayout from '../../layout/content';
 import { fetchRequest } from '../../api/client/fetchRequest';
-import { jsonApi, menuLinks } from '../../api/url';
+import { serviceContent } from '../../api/url';
 import menuItems from './constants/menuItems.json'
-
-interface NavItem {
-  id: string;
-  label: string;
-  path: string;
-  children?: NavItem[];
-}
+import { useLocation } from 'react-router-dom';
 
 interface LinkData {
-  title: string;
-}
-
-function parseLinksToNavItems(linkDataArray: LinkData[]): NavItem[] {
-  const navItems: NavItem[] = [];
-
-  linkDataArray.forEach((item) => {
-    const hrefMatch = item.title.match(/href="([^"]+)"/);
-    const textMatch = item.title.match(/>([^<]+)<\/a>/);
-
-    if (!hrefMatch || !textMatch) return;
-
-    const path = hrefMatch[1];
-    const label = textMatch[1]
-      .replace(/&amp;/g, '&')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
-      .replace(/&quot;/g, '"')
-      .trim();
-
-    const segments = path.split('/').filter(Boolean);
-    const id = segments.join('-').toLowerCase().replace(/[^a-z0-9-]/g, '-');
-
-    navItems.push({
-      id,
-      label,
-      path,
-    });
-  });
-
-  return navItems;
+  link: string;
+  uuid: string;
 }
 
 const GuideRoute = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const params = useParams();
 
-  const [currentPath, setCurrentPath] = useState('/');
-  
-  // Build current path from URL params (supports wildcard routes like /guide/*)
-  // const currentPath = '/' + (params['*'] || '');
+  const location = useLocation()
+  const { uuid, link } = location.state || {};
+
+  console.log(location.state)
+
+
+
+  const [currentPath, setCurrentPath] = useState(link || '/');
+  const [requestPageUUID, setRequestPageUUID] = useState(uuid || '');
   
   const [contentData, setContentData] = useState<string | null>(null);
   const [contentTitle, setContentTitle] = useState<string | null>(null);
-  const [navbarItems, setNavbarItems] = useState<NavItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch page content when path changes
   useEffect(() => {
     const fetchContent = async () => {
       if (!currentPath || currentPath === '/') {
@@ -77,22 +40,14 @@ const GuideRoute = () => {
       try {
         setIsLoading(true);
         setError(null);
-        
-        // Find the matching nav item to get the proper title
-        // const matchingItem = navbarItems.find(item => item.path === currentPath);
-        // const titleToFetch = matchingItem?.label || currentPath.split('/').pop() || '';
 
-
-        const titleToFetch = String(currentPath.replaceAll('-', '%20'))
-        console.log(titleToFetch)
+        const apiWithParam = serviceContent + requestPageUUID
+        const contentResponse = await fetchRequest(apiWithParam)
+        console.log(contentResponse)
         
-        const jsonDynamic = jsonApi + encodeURIComponent(titleToFetch);
-        const jsonData = await fetchRequest(jsonDynamic);
-        console.log(jsonData, jsonDynamic)
-        
-        if (jsonData?.data?.[0]?.attributes) {
-          setContentData(jsonData.data[0].attributes.body);
-          setContentTitle(jsonData.data[0].attributes.title);
+        if (contentResponse?.[0]?.body) {
+          setContentData(contentResponse?.[0]?.body);
+          setContentTitle(contentResponse?.[0]?.title);
         } else {
           setError('Content not found');
           setContentData(null);
@@ -109,10 +64,11 @@ const GuideRoute = () => {
     };
 
     fetchContent();
-  }, [currentPath, navbarItems]);
+  }, [currentPath, requestPageUUID]);
 
-  const handleNavigate = (path: string) => {
-    navigate(`/guide${path}`);
+  const handleNavigate = (data: LinkData) => {
+    setCurrentPath(data.link)
+    setRequestPageUUID(data.uuid)
   };
 
 
@@ -123,7 +79,7 @@ const GuideRoute = () => {
           <LeftSidebar
             items={menuItems}
             currentPath={currentPath}
-            onNavigate={setCurrentPath}
+            onNavigate={(data) => handleNavigate(data)}
           />
         }
         rightSideBar={

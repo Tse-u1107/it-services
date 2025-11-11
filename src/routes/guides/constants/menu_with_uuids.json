@@ -1,8 +1,7 @@
 [
   {
     "title": "Home",
-    "link": "/",
-    "uuid": ""
+    "link": "/"
   },
   {
     "title": "Academic Technology Portal",
@@ -2099,7 +2098,6 @@
   },
   {
     "title": "Faqs",
-    "link": "/faqs",
-    "uuid": ""
+    "link": "/faqs"
   }
 ]

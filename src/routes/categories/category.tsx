@@ -6,7 +6,7 @@ import CategorySection from './components/categorySection';
 import { UserCircleIcon as User } from '@heroicons/react/24/outline';
 import { type Item } from '../../components/expandableList/interface';
 import { PlusIcon } from '@heroicons/react/24/outline';
-
+import menuItem from '../../assets/menuItems.json'
 import {
   MagnifyingGlassIcon,
   UserIcon,
@@ -18,12 +18,23 @@ import {
 } from '@heroicons/react/24/outline';
 import HelpSection from './components/helpSection';
 
+interface NavItem {
+  title: string;
+  link: string;
+  uuid: string;
+  children?: NavItem[];
+}
+
 const CategoryRoute = () => {
   const { LL } = useI18nContext();
 
   const [searchValue, setSearchValue] = useState('');
 
   console.log(searchValue);
+
+  const menuData: NavItem[] = menuItem
+
+  const filteredMenuData = menuData.filter(item => item.title !== "Home");
 
   const accessItems: Item[] = [
     {
@@ -64,94 +75,22 @@ const CategoryRoute = () => {
     },
   ];
 
-  const categories = [
-    {
-      title: 'Account & access',
-      icon: User,
-      items: [
-        { link: '/password-reset', linkTitle: 'Password reset / Recovery' },
-        { link: '/two-factor', linkTitle: 'Two-factor Authentication' },
-        { link: '/account-issues', linkTitle: 'Account issues for Students/Faculty/Staff' },
-        { link: '/two-factor-setup', linkTitle: 'Two-factor Authentication' },
-        { link: '/two-factor-troubleshoot', linkTitle: 'Two-factor Authentication' },
-      ],
-    },
-    {
-      title: 'Account & access',
-      icon: User,
-      items: [
-        { link: '/password-reset', linkTitle: 'Password reset / Recovery' },
-        { link: '/two-factor', linkTitle: 'Two-factor Authentication' },
-        { link: '/account-issues', linkTitle: 'Account issues for Students/Faculty/Staff' },
-        { link: '/two-factor-setup', linkTitle: 'Two-factor Authentication' },
-      ],
-    },
-    {
-      title: 'Account & access',
-      icon: User,
-      items: [
-        { link: '/password-reset', linkTitle: 'Password reset / Recovery' },
-        { link: '/two-factor', linkTitle: 'Two-factor Authentication' },
-        { link: '/account-issues', linkTitle: 'Account issues for Students/Faculty/Staff' },
-        { link: '/two-factor-setup', linkTitle: 'Two-factor Authentication' },
-        { link: '/two-factor-troubleshoot', linkTitle: 'Two-factor Authentication' },
-      ],
-    },
-    {
-      title: 'Account & access',
-      icon: User,
-      items: [
-        { link: '/password-reset', linkTitle: 'Password reset / Recovery' },
-        { link: '/two-factor', linkTitle: 'Two-factor Authentication' },
-        { link: '/account-issues', linkTitle: 'Account issues for Students/Faculty/Staff' },
-        { link: '/two-factor-setup', linkTitle: 'Two-factor Authentication' },
-        { link: '/two-factor-troubleshoot', linkTitle: 'Two-factor Authentication' },
-      ],
-    },
-    {
-      title: 'Account & access',
-      icon: User,
-      items: [
-        { link: '/password-reset', linkTitle: 'Password reset / Recovery' },
-        { link: '/two-factor', linkTitle: 'Two-factor Authentication' },
-        { link: '/account-issues', linkTitle: 'Account issues for Students/Faculty/Staff' },
-        { link: '/two-factor-setup', linkTitle: 'Two-factor Authentication' },
-        { link: '/two-factor-troubleshoot', linkTitle: 'Two-factor Authentication' },
-      ],
-    },
-    {
-      title: 'Account & access',
-      icon: User,
-      items: [
-        { link: '/password-reset', linkTitle: 'Password reset / Recovery' },
-        { link: '/two-factor', linkTitle: 'Two-factor Authentication' },
-        { link: '/account-issues', linkTitle: 'Account issues for Students/Faculty/Staff' },
-        { link: '/two-factor-setup', linkTitle: 'Two-factor Authentication' },
-      ],
-    },
-    {
-      title: 'Account & access',
-      icon: User,
-      items: [
-        { link: '/password-reset', linkTitle: 'Password reset / Recovery' },
-        { link: '/two-factor', linkTitle: 'Two-factor Authentication' },
-        { link: '/account-issues', linkTitle: 'Account issues for Students/Faculty/Staff' },
-        { link: '/two-factor-setup', linkTitle: 'Two-factor Authentication' },
-        { link: '/two-factor-troubleshoot', linkTitle: 'Two-factor Authentication' },
-      ],
-    },
-    {
-      title: 'Account & access',
-      icon: User,
-      items: [
-        { link: '/password-reset', linkTitle: 'Password reset / Recovery' },
-        { link: '/two-factor', linkTitle: 'Two-factor Authentication' },
-        { link: '/account-issues', linkTitle: 'Account issues for Students/Faculty/Staff' },
-        { link: '/two-factor-setup', linkTitle: 'Two-factor Authentication' },
-        { link: '/two-factor-troubleshoot', linkTitle: 'Two-factor Authentication' },
-      ],
-    },
-  ];
+  // Transform NavItem structure to match CategorySection expected format
+  const transformToCategoryFormat = (navItems: NavItem[]) => {
+    return navItems.map(navItem => ({
+      title: navItem.title,
+      icon: User, // You can map different icons based on category if needed
+      items: navItem.children 
+        ? navItem.children.map(child => ({
+            link: child.link,
+            linkTitle: child.title,
+            uuid: child.uuid
+          }))
+        : []
+    }));
+  };
+
+  const categories = transformToCategoryFormat(filteredMenuData);
 
   const helpData = {
     gettingStarted: [

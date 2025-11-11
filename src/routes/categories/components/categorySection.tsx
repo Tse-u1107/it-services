@@ -1,5 +1,11 @@
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
-import { type CategoryItem } from '../interface';
+import { Link } from 'react-router-dom';
+
+interface CategoryItem {
+  link: string,
+  linkTitle: string,
+  uuid: string
+}
 
 const CategorySection = ({ 
   title = "Account & access", 
@@ -20,12 +26,15 @@ const CategorySection = ({
       <ul className="space-y-3">
         {items.map((item, index) => (
           <li key={index}>
-            <a 
-              href={item.link} 
+            <Link 
+              to={{
+                pathname: '/guides',
+                state: { uuid: item.uuid, link: item.link }
+              }}
               className="color-[#32013B] hover:text-purple-700 hover:underline text-sm"
             >
               {item.linkTitle}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
@@ -33,4 +42,4 @@ const CategorySection = ({
   );
 };
 
-export default CategorySection
+export default CategorySection;

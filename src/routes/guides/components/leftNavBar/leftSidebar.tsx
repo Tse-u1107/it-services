@@ -4,13 +4,14 @@ import { ChevronRightIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outli
 interface NavItem {
   title: string;
   link: string;
+  uuid: string;
   children?: NavItem[];
 }
 
 interface LeftSidebarProps {
   items: NavItem[];
   currentPath: string;
-  onNavigate: (path: string) => void;
+  onNavigate: (data: { link: string; uuid: string }) => void;
 }
 
 const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigate }) => {
@@ -67,7 +68,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
             if (hasChildren) {
               toggleExpand(item.link);
             }
-            onNavigate(item.link);
+            onNavigate({ link: item.link, uuid: item.uuid });
           }}
           className={`
             w-full flex items-center justify-between px-4 py-2 text-left text-sm
@@ -124,21 +125,4 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
   );
 };
 
-export default LeftSidebar
-
-// export default function App() {
-
-//   return (
-//     <div className="flex h-screen">
-//       <LeftSidebar 
-//         items={menuItems}
-//         currentPath={currentPath}
-//         onNavigate={setCurrentPath}
-//       />
-//       <main className="flex-1 p-8 overflow-y-auto">
-//         <h1 className="text-2xl font-bold mb-4">Current Page</h1>
-//         <p className="text-gray-600">Path: {currentPath}</p>
-//       </main>
-//     </div>
-//   );
-// }
+export default LeftSidebar;
