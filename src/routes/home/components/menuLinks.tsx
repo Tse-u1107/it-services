@@ -33,45 +33,55 @@ const LINK_CONFIG = [
   { title: "Workflow Platform", tag: "Software & Applications" }
 ];
 
-interface SourceLink {
+interface NavItem {
   title: string;
-  field_linkto: string | null;
-  field_services_icon: string | null;
-  view_node: string;
-  field_linkto_1: string;
+  link: string;
+  uuid: string;
+  children?: NavItem[];
 }
 
 interface FilteredLink {
   title: string;
   tag: string;
-  url: string;
-  viewNode: string;
+  link: string;
+  uuid: string;
 }
 
 /**
- * Extracts URL from HTML anchor tag
+ * Recursively extracts all nav items including nested children
  */
-function extractUrlFromViewNode(viewNode: string): string {
-  const match = viewNode.match(/href="([^"]+)"/);
-  return match ? match[1] : '';
+function flattenNavItems(items: NavItem[]): NavItem[] {
+  const result: NavItem[] = [];
+  
+  for (const item of items) {
+    result.push(item);
+    if (item.children && item.children.length > 0) {
+      result.push(...flattenNavItems(item.children));
+    }
+  }
+  
+  return result;
 }
 
 /**
- * Filters and tags links from source array based on LINK_CONFIG
+ * Filters and tags links from nav items based on LINK_CONFIG
  */
-function filterAndTagLinks(sourceLinks: SourceLink[]): FilteredLink[] {
+function filterAndTagLinks(navItems: NavItem[]): FilteredLink[] {
+  // Flatten all items including nested children
+  const allItems = flattenNavItems(navItems);
+  
   // Create a Map for O(1) lookup
   const configMap = new Map(
     LINK_CONFIG.map(item => [item.title.toLowerCase(), item.tag])
   );
 
-  return sourceLinks
-    .filter(link => configMap.has(link.title.toLowerCase()))
-    .map(link => ({
-      title: link.title,
-      tag: configMap.get(link.title.toLowerCase())!,
-      url: extractUrlFromViewNode(link.view_node),
-      viewNode: link.view_node
+  return allItems
+    .filter(item => configMap.has(item.title.toLowerCase()))
+    .map(item => ({
+      title: item.title,
+      tag: configMap.get(item.title.toLowerCase())!,
+      link: item.link,
+      uuid: item.uuid
     }));
 }
 
@@ -89,31 +99,35 @@ function groupLinksByTag(links: FilteredLink[]): Record<string, FilteredLink[]> 
 }
 
 /**
- * Main function to process links
+ * Main function to process links from local JSON data
  */
-function processLinks(sourceLinks: SourceLink[]) {
-  const filteredLinks = filterAndTagLinks(sourceLinks);
+function processLinks(navItems: NavItem[]) {
+  const filteredLinks = filterAndTagLinks(navItems);
   const groupedLinks = groupLinksByTag(filteredLinks);
   
   return {
     filtered: filteredLinks,
     grouped: groupedLinks,
     stats: {
-      total: sourceLinks.length,
+      total: flattenNavItems(navItems).length,
       filtered: filteredLinks.length,
       categories: Object.keys(groupedLinks).length
     }
   };
 }
 
+// Example usage:
+// import navData from './navigation.json';
+// const result = processLinks(navData);
 // const accountLinks = result.grouped["Account & Access"] || [];
 // console.log('Account & Access links:', accountLinks);
 
 export { 
   processLinks, 
   filterAndTagLinks, 
-  groupLinksByTag, 
+  groupLinksByTag,
+  flattenNavItems,
   LINK_CONFIG,
   type FilteredLink,
-  type SourceLink 
+  type NavItem 
 };

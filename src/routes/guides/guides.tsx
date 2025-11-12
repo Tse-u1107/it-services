@@ -16,10 +16,6 @@ const GuideRoute = () => {
   const location = useLocation()
   const { uuid, link } = location.state || {};
 
-  console.log(location.state)
-
-
-
   const [currentPath, setCurrentPath] = useState(link || '/');
   const [requestPageUUID, setRequestPageUUID] = useState(uuid || '');
   
@@ -73,7 +69,7 @@ const GuideRoute = () => {
 
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen pt-15 pb-30">
       <ContentLayout
         leftSideBar={
           <LeftSidebar
@@ -90,7 +86,7 @@ const GuideRoute = () => {
           </div>
         }
       >
-        <div className="max-w-4xl mx-auto p-6">
+        <div className="max-w-4xl mx-auto p-6 pt-[0px]">
           {isLoading ? (
             <div className="flex items-center justify-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-nyu-700"></div>

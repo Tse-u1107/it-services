@@ -76,7 +76,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
             ${active ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700 hover:bg-gray-50'}
             ${depth === 0 ? 'font-semibold' : ''}
           `}
-          style={{ paddingLeft: `${1 + depth * 1}rem` }}
+          style={{ paddingLeft: `${1 + depth * 1}rem`, color: '#2B2B2B'}}
         >
           <span className="truncate">{item.title}</span>
           {hasChildren && (
@@ -99,7 +99,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
 
   return (
     <aside className="w-80 bg-white border-r border-gray-200 h-screen overflow-y-auto">
-      <div className="p-4">
+      <div className="pr-7 pl-22">
         <div className="relative mb-4">
           <MagnifyingGlassIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           <input
@@ -111,11 +111,11 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
           />
         </div>
 
-        <nav>
+        <nav className=''>
           {filteredItems.map(item => renderItem(item))}
           
           {filteredItems.length === 0 && (
-            <div className="px-4 py-8 text-center text-gray-500 text-sm">
+            <div className="py-8 text-center text-gray-500 text-sm">
               {searchQuery ? `No results for "${searchQuery}"` : 'No items available'}
             </div>
           )}

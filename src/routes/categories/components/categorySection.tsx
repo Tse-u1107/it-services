@@ -2,19 +2,19 @@ import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
 
 interface CategoryItem {
-  link: string,
-  linkTitle: string,
-  uuid: string
+  link: string;
+  linkTitle: string;
+  uuid: string;
 }
 
-const CategorySection = ({ 
-  title = "Account & access", 
+const CategorySection = ({
+  title = 'Account & access',
   icon: Icon = QuestionMarkCircleIcon,
-  items = []
+  items = [],
 }: {
-    title: string,
-    icon: React.FC<React.SVGProps<SVGSVGElement>>,
-    items: CategoryItem[]
+  title: string;
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
+  items: CategoryItem[];
 }) => {
   return (
     <div className="">
@@ -22,15 +22,13 @@ const CategorySection = ({
         <Icon className="icon-5 text-gray-700" />
         <h3 className="text-xl font-bold">{title}</h3>
       </div>
-      
+
       <ul className="space-y-3">
         {items.map((item, index) => (
           <li key={index}>
-            <Link 
-              to={{
-                pathname: '/guides',
-                state: { uuid: item.uuid, link: item.link }
-              }}
+            <Link
+              to="/guides"
+              state={{ uuid: item.uuid, link: item.link }}
               className="color-[#32013B] hover:text-purple-700 hover:underline text-sm"
             >
               {item.linkTitle}

@@ -17,9 +17,7 @@ import {
 } from '@heroicons/react/24/outline';
 import IdBanner from './components/banner';
 import AccessCardBlock from '../../components/accessCard/accessCardBlock';
-
-import { fetchRequest } from '../../api/client/fetchRequest';
-import { menuLinks, serviceList } from '../../api/url';
+import menuItemsJSON from '../../assets/menuItems.json'
 import { processLinks, type FilteredLink } from './components/menuLinks';
 
 interface MenuCategories {
@@ -29,53 +27,24 @@ interface MenuCategories {
   icon: React.ReactNode; // optional, can pass a Heroicon component
 }
 
-interface MenuLinks {
-  result: {
-    filtered: FilteredLink[];
-    grouped: Record<string, FilteredLink[]>;
-    stats: {
-      total: number;
-      filtered: number;
-      categories: number;
-    };
-  };
-}
-
 const HomeRoute = () => {
   const [, setSearchValue] = useState('');
   const { LL } = useI18nContext();
 
-  const [menuItems, setMenuItems] = useState<MenuLinks>({
-    result: {
-      filtered: [],
-      grouped: {},
-      stats: { total: 0, filtered: 0, categories: 0 },
-    },
-  });
-
   const [filteredLinks, setFilteredLinks] = useState<FilteredLink[]>([]);
   const [groupedLinks, setGroupedLinks] = useState<Record<string, FilteredLink[]>>({});
 
-  const [test, setTest] = useState(0)
-
   const fetchServiceList = async () => {
-    const data = await fetchRequest(serviceList);
-    const menuLinkData = await fetchRequest(menuLinks)
+    // const data = await fetchRequest(serviceList);
+    // const menuLinkData = await fetchRequest(menuLinks)
+
+    const data = menuItemsJSON
     
     const result = processLinks(data);
     const { filtered, grouped, stats } = result;
-    setMenuItems({
-      result: { filtered, grouped, stats },
-    });
     setFilteredLinks(filtered);
     setGroupedLinks(grouped);
-    // console.log(data);
-    console.log(menuLinkData)
-    setTest(data[5].view_node)
   };
-
-  console.log(test)
-
 
   useEffect(() => {
     fetchServiceList();
@@ -101,7 +70,7 @@ const HomeRoute = () => {
         <ul className="[&>li:not(:last-child)]:mb-6">
           {links.map((link, i) => (
             <li key={i} className="text-md hover:underline hover:text-purple-600 transition-colors">
-              <Link to={`/guides${link.url}`} state={{ title: link.title }}>
+              <Link to={`/guides`} state={{ title: link.title, link: link.link, uuid: link.uuid  }}>
                 {link.title}
               </Link>
             </li>

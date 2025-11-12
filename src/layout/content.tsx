@@ -1,5 +1,4 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
 
 const ContentLayout = ({
   leftSideBar,
@@ -12,9 +11,9 @@ const ContentLayout = ({
 }) => {
   return (
     <div className="flex flex-col min-h-screen bg-off-white">
-      <div className="flex flex-1 w-full gap-6">
+      <div className="flex flex-1 w-full gap-6 bg-white">
         {/* Left sidebar */}
-        <aside className="hidden lg:block shrink-0">{leftSideBar}</aside>
+        <aside className="hidden lg:block shrink-0 w-[21.5rem]">{leftSideBar}</aside>
 
         {/* Main content */}
         <main className="flex-1 min-w-0">{children}</main>
