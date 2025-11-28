@@ -1,9 +1,21 @@
 import axios, { type AxiosRequestConfig, type AxiosResponse } from 'axios';
 
-// Base URL configuration
+// ================================
+// Extend AxiosRequestConfig
+// ================================
+
+declare module 'axios' {
+  export interface AxiosRequestConfig {
+    requireAuth?: boolean; // <--- Add this to enable token injection
+  }
+}
+
+// ================================
+// Base URL & API Client
+// ================================
+
 export const baseUrl = '/';
 
-// API endpoints
 export const homepageServiceList = '/home/services';
 
 const apiClient = axios.create({
@@ -15,18 +27,29 @@ const apiClient = axios.create({
   withCredentials: false,
 });
 
+// ================================
+// Request Interceptor
+// ================================
+
 apiClient.interceptors.request.use(
   (config) => {
-    // const token = localStorage.getItem('token');
-    // if (token) {
-    //   config.headers.Authorization = `Bearer ${token}`;
-    // }
+    // Only attach token when explicitly requested
+    if (config.requireAuth) {
+      const token = localStorage.getItem('access_token');
+      if (token) {
+        config.headers = config.headers || {};
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+    }
+
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
+
+// ================================
+// Response Interceptor
+// ================================
 
 apiClient.interceptors.response.use(
   (response) => response,
@@ -42,26 +65,32 @@ apiClient.interceptors.response.use(
   }
 );
 
+// ================================
+// fetchRequest<T> Wrapper
+// ================================
+
 export const fetchRequest = async <T = any>(
   endpoint: string,
   config?: AxiosRequestConfig
 ): Promise<T> => {
   try {
     const response: AxiosResponse<T> = await apiClient({
+      ...config,
       url: endpoint,
       method: config?.method || 'GET',
-      ...config,
     });
-    
+
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw new Error(
-        error.response?.data?.message || 
-        error.message || 
-        'An error occurred while fetching data'
-      );
+      const msg =
+        error.response?.data?.message ||
+        error.message ||
+        'An error occurred while fetching data';
+
+      throw new Error(msg);
     }
+
     throw error;
   }
 };

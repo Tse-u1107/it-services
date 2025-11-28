@@ -3,7 +3,7 @@ import SearchBar from '../../components/searchBar/searchBar';
 import { useI18nContext } from '../../i18n/i18n-react';
 import ExpandableList from '../../components/expandableList/expandableList';
 import type { Item } from '../../components/expandableList/interface';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './home.css';
 
 import {
@@ -19,6 +19,7 @@ import IdBanner from './components/banner';
 import AccessCardBlock from '../../components/accessCard/accessCardBlock';
 import menuItemsJSON from '../../assets/menuItems.json'
 import { processLinks, type FilteredLink } from './components/menuLinks';
+import { loadAuthUser } from 'src/utils/userInfo';
 
 interface MenuCategories {
   id: string;
@@ -28,16 +29,17 @@ interface MenuCategories {
 }
 
 const HomeRoute = () => {
+
+  const location = useLocation()
   const [, setSearchValue] = useState('');
   const { LL } = useI18nContext();
+
+  const [userInfo, setUserInfo] = useState([])
 
   const [filteredLinks, setFilteredLinks] = useState<FilteredLink[]>([]);
   const [groupedLinks, setGroupedLinks] = useState<Record<string, FilteredLink[]>>({});
 
   const fetchServiceList = async () => {
-    // const data = await fetchRequest(serviceList);
-    // const menuLinkData = await fetchRequest(menuLinks)
-
     const data = menuItemsJSON
     
     const result = processLinks(data);
@@ -47,9 +49,21 @@ const HomeRoute = () => {
   };
 
   useEffect(() => {
-    fetchServiceList();
-    categorizeFilteredLinks();
+
+    const localUserInfo = loadAuthUser()
+
+    console.log(localUserInfo, userInfo)
+
+    async function init() {
+      fetchServiceList();
+      categorizeFilteredLinks();
+    }
+
+    init()
   }, []);
+  
+
+  console.log(location)
 
   const categorizeFilteredLinks = (): MenuCategories[] => {
     const iconMap: Record<string, React.ReactNode> = {
@@ -77,7 +91,7 @@ const HomeRoute = () => {
           ))}
         </ul>
       ),
-      icon: iconMap[category] || <UserIcon className="icon-5" />, // fallback icon
+      icon: iconMap[category] || <UserIcon className="icon-5" />,
     }));
   };
 
