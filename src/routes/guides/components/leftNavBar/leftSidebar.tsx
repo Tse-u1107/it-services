@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { ChevronRightIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 interface NavItem {
@@ -18,29 +18,71 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const [searchQuery, setSearchQuery] = useState('');
 
+  const findParentPaths = (
+    items: NavItem[],
+    targetPath: string,
+    parents: string[] = []
+  ): string[] | null => {
+    for (const item of items) {
+      if (item.link === targetPath) {
+        return parents;
+      }
+      if (item.children) {
+        const result = findParentPaths(item.children, targetPath, [...parents, item.link]);
+        if (result) return result;
+      }
+    }
+    return null;
+  };
+
+  const getActivePathChain = (items: NavItem[], targetPath: string): Set<string> => {
+    const chain = new Set<string>();
+    const parents = findParentPaths(items, targetPath);
+    if (parents) {
+      parents.forEach((p) => chain.add(p));
+    }
+    chain.add(targetPath);
+    return chain;
+  };
+
+  const activePathChain = useMemo(() => {
+    return getActivePathChain(items, currentPath);
+  }, [items, currentPath]);
+
+  useEffect(() => {
+    if (currentPath && currentPath !== '/') {
+      const parents = findParentPaths(items, currentPath);
+      if (parents && parents.length > 0) {
+        setExpandedItems((prev) => {
+          const next = new Set(prev);
+          parents.forEach((parent) => next.add(parent));
+          return next;
+        });
+      }
+    }
+  }, [currentPath, items]);
+
   const toggleExpand = (link: string) => {
-    setExpandedItems(prev => {
+    setExpandedItems((prev) => {
       const next = new Set(prev);
       next.has(link) ? next.delete(link) : next.add(link);
       return next;
     });
   };
 
-  // Recursive search filter with memoization
   const filteredItems = useMemo(() => {
     if (!searchQuery) return items;
-
     const query = searchQuery.toLowerCase();
-    
+
     const filterItems = (items: NavItem[]): NavItem[] => {
       return items.reduce((acc, item) => {
         const matchesTitle = item.title.toLowerCase().includes(query);
         const filteredChildren = item.children ? filterItems(item.children) : [];
-        
+
         if (matchesTitle || filteredChildren.length > 0) {
           acc.push({
             ...item,
-            children: filteredChildren.length > 0 ? filteredChildren : item.children
+            children: filteredChildren.length > 0 ? filteredChildren : item.children,
           });
         }
         return acc;
@@ -50,47 +92,122 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
     return filterItems(items);
   }, [items, searchQuery]);
 
-  // Check if current path matches item
-  const isActive = (link: string) => {
-    return currentPath === link || currentPath.startsWith(link + '/');
-  };
+  const isActive = (link: string) => currentPath === link;
+  const isInActiveChain = (link: string) => activePathChain.has(link);
 
-  // Recursive render function
-  const renderItem = (item: NavItem, depth: number = 0): React.ReactNode => {
+  // Updated Signature: Added connectorType
+  const renderItem = (
+    item: NavItem,
+    depth: number = 0,
+    connectorType: 'none' | 'vertical' | 'elbow' = 'none'
+  ): React.ReactNode => {
     const hasChildren = item.children && item.children.length > 0;
     const isExpanded = expandedItems.has(item.link) || searchQuery !== '';
     const active = isActive(item.link);
+    const inActiveChain = isInActiveChain(item.link);
+
+    // Indentation math
+    const parentIndent = 0.75 + (depth - 1) * 1;
+    const paddingLeft = 1.25 + depth * 1;
+
+    // Calculate which child is on the active path
+    let activeChildIndex = -1;
+    if (hasChildren && inActiveChain) {
+      activeChildIndex = item.children!.findIndex((child) => isInActiveChain(child.link));
+    }
 
     return (
-      <div key={item.link}>
-        <button
-          onClick={() => {
-            if (hasChildren) {
-              toggleExpand(item.link);
+      <div key={item.link} className="relative">
+        {depth > 0 && connectorType === 'vertical' && (
+          <div
+            className="absolute border-l-2 border-blue-400"
+            style={{
+              left: `${parentIndent}rem`,
+              top: 0,
+              bottom: 0,
+            }}
+          />
+        )}
+
+        <div
+          className={`flex items-center justify-between px-4 py-2 text-sm transition-colors duration-150 relative
+            ${
+              active
+                ? 'bg-blue-50 text-blue-600 font-medium'
+                : inActiveChain
+                  ? 'text-blue-500 font-medium'
+                  : 'text-gray-700 hover:bg-gray-50'
             }
-            onNavigate({ link: item.link, uuid: item.uuid });
-          }}
-          className={`
-            w-full flex items-center justify-between px-4 py-2 text-left text-sm
-            transition-colors
-            ${active ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700 hover:bg-gray-50'}
-            ${depth === 0 ? 'font-semibold' : ''}
           `}
-          style={{ paddingLeft: `${1 + depth * 1}rem`, color: '#2B2B2B'}}
+          style={{ marginLeft: `${paddingLeft}rem` }}
         >
-          <span className="truncate">{item.title}</span>
-          {hasChildren && (
-            <ChevronRightIcon
-              className={`w-4 h-4 flex-shrink-0 ml-2 transition-transform ${
-                isExpanded ? 'rotate-90' : ''
-              }`}
+          {connectorType === 'elbow' && (
+            <div
+              className="absolute border-l-2 border-b-2 border-blue-400 rounded-bl-lg"
+              style={{
+                left: '-1.5rem',
+                top: 0,
+                height: '50%',
+                width: '0.5rem',
+              }}
             />
           )}
-        </button>
+
+          {/* 2. The Tail (Connects Parent to Children) */}
+          {hasChildren && isExpanded && inActiveChain && (
+            <div
+              className="absolute border-l-2 border-blue-400"
+              style={{
+                left: '-0.5rem',
+                top: '0%',
+                bottom: 0,
+              }}
+            />
+          )}
+
+          <button
+            className="flex-1 text-left truncate relative z-10"
+            onClick={() => {
+              if (hasChildren) toggleExpand(item.link);
+              onNavigate({ link: item.link, uuid: item.uuid });
+            }}
+          >
+            {item.title}
+          </button>
+
+          {hasChildren && (
+            <button
+              aria-label={isExpanded ? 'Collapse section' : 'Expand section'}
+              className="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-200 z-10"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleExpand(item.link);
+              }}
+            >
+              <ChevronRightIcon
+                className={`w-3 h-3 text-gray-400 transition-transform duration-200 ${
+                  isExpanded ? 'rotate-90' : ''
+                }`}
+              />
+            </button>
+          )}
+        </div>
 
         {hasChildren && isExpanded && (
-          <div>
-            {item.children!.map(child => renderItem(child, depth + 1))}
+          <div className="relative">
+            {item.children!.map((child, index) => {
+              let childConnectorType: 'none' | 'vertical' | 'elbow' = 'none';
+
+              if (inActiveChain && activeChildIndex !== -1) {
+                if (index < activeChildIndex) {
+                  childConnectorType = 'vertical';
+                } else if (index === activeChildIndex) {
+                  childConnectorType = 'elbow';
+                }
+              }
+
+              return renderItem(child, depth + 1, childConnectorType);
+            })}
           </div>
         )}
       </div>
@@ -99,7 +216,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
 
   return (
     <aside className="w-80 bg-white border-r border-gray-200 h-screen overflow-y-auto">
-      <div className="pr-7 pl-22">
+      <div className="pr-7 pl-4 pt-4">
         <div className="relative mb-4">
           <MagnifyingGlassIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           <input
@@ -110,10 +227,8 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
             className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-
-        <nav className=''>
-          {filteredItems.map(item => renderItem(item))}
-          
+        <nav>
+          {filteredItems.map((item) => renderItem(item))} {/* Roots always have 'none' */}
           {filteredItems.length === 0 && (
             <div className="py-8 text-center text-gray-500 text-sm">
               {searchQuery ? `No results for "${searchQuery}"` : 'No items available'}

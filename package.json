@@ -20,6 +20,7 @@
     "@tailwindcss/vite": "^4.1.14",
     "axios": "^1.13.1",
     "cors": "^2.8.5",
+    "html-react-parser": "^5.2.10",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.4",
