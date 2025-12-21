@@ -1,21 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SearchBar from '../../components/searchBar/searchBar';
 import { useI18nContext } from '../../i18n/i18n-react';
 import Breadcrumbs from '../../components/breadCrumbs/breadCrumbs';
 import CategorySection from './components/categorySection';
 import { UserCircleIcon as User } from '@heroicons/react/24/outline';
 import { type Item } from '../../components/expandableList/interface';
-import { PlusIcon } from '@heroicons/react/24/outline';
 import menuItem from '../../assets/menuItems.json'
-import {
-  MagnifyingGlassIcon,
-  UserIcon,
-  WifiIcon,
-  WindowIcon,
-  CpuChipIcon,
-  ShieldCheckIcon,
-  UserGroupIcon,
-} from '@heroicons/react/24/outline';
+import AccessCardBlock from '../../components/accessCard/accessCardBlock';
+import { fetchRequest } from '../../api/client/fetchRequest';
+import { home as homeApiUrl } from '../../api/url';
+import { transformHomeApiResponse, type HomeApiItem } from '../../utils/transformHomeApi';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import HelpSection from './components/helpSection';
 
 interface NavItem {
@@ -29,6 +24,8 @@ const CategoryRoute = () => {
   const { LL } = useI18nContext();
 
   const [searchValue, setSearchValue] = useState('');
+  const [accessItems, setAccessItems] = useState<Item[]>([]);
+  const [accessItemsLoading, setAccessItemsLoading] = useState(true);
 
   console.log(searchValue);
 
@@ -36,44 +33,23 @@ const CategoryRoute = () => {
 
   const filteredMenuData = menuData.filter(item => item.title !== "Home");
 
-  const accessItems: Item[] = [
-    {
-      id: 'access_1',
-      title: LL.home.list.account(),
-      content: 'Account content',
-      icon: <UserIcon className="icon-8" />,
-    },
-    {
-      id: 'access_2',
-      title: LL.home.list.network(),
-      content: 'Network content',
-      icon: <WifiIcon className="icon-8" />,
-    },
-    {
-      id: 'access_3',
-      title: LL.home.list.software(),
-      content: 'Install, update, and manage software applications.',
-      icon: <WindowIcon className="icon-8" />,
-    },
-    {
-      id: 'access_4',
-      title: LL.home.list.hardware(),
-      content: 'Monitor and maintain hardware devices.',
-      icon: <CpuChipIcon className="icon-8" />,
-    },
-    {
-      id: 'access_5',
-      title: LL.home.list.security(),
-      content: 'Review security policies and access control.',
-      icon: <ShieldCheckIcon className="icon-8" />,
-    },
-    {
-      id: 'access_6',
-      title: LL.home.list.support(),
-      content: 'Get help and support services.',
-      icon: <UserGroupIcon className="icon-8" />,
-    },
-  ];
+  const fetchHomeApiData = async () => {
+    try {
+      setAccessItemsLoading(true);
+      const data = await fetchRequest<HomeApiItem[]>(homeApiUrl);
+      const transformedItems = transformHomeApiResponse(Array.isArray(data) ? data : []);
+      setAccessItems(transformedItems);
+    } catch (error) {
+      console.error('Error fetching home API data:', error);
+      setAccessItems([]);
+    } finally {
+      setAccessItemsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchHomeApiData();
+  }, []);
 
   // Transform NavItem structure to match CategorySection expected format
   const transformToCategoryFormat = (navItems: NavItem[]) => {
@@ -153,6 +129,25 @@ const CategoryRoute = () => {
           ))}
         </div>
         <div className="mb-20">
+          {accessItemsLoading ? (
+            <div className="text-center py-8">Loading quick access items...</div>
+          ) : accessItems.length > 0 ? (
+            <AccessCardBlock 
+              accessItems={accessItems}
+              title="Quick Access"
+              showBrowseButton={true}
+              browseButtonText="Browse all topics"
+              cardBgColor="bg-off-white"
+              cardTextColor="text-[#2F2F2F]"
+              titleSize="text-xl"
+              showCarousel={true}
+            />
+          ) : (
+            <div className="text-center py-8">No quick access items available.</div>
+          )}
+          
+          {/* 
+          OLD CODE - REPLACED WITH AccessCardBlock COMPONENT AND FETCH LOGIC
           <div className="w-full">
             <div className="flex justify-between mb-10">
               <div className="font-medium text-xl">Quick Access</div>
@@ -181,6 +176,7 @@ const CategoryRoute = () => {
               ))}
             </div>
           </div>
+          */}
         </div>
         <div className="mb-46">
           <HelpSection

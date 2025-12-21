@@ -5,34 +5,59 @@ import { useState, useEffect } from 'react';
 const ITEMS_PER_PAGE = 6;
 const STORAGE_KEY = 'accessCardCarouselPage';
 
-const AccessCardBlock = ({ accessItems }: { accessItems: Item[] }) => {
+interface AccessCardBlockProps {
+  accessItems: Item[];
+  title?: string;
+  showBrowseButton?: boolean;
+  browseButtonText?: string;
+  cardBgColor?: string;
+  cardTextColor?: string;
+  titleSize?: string;
+  itemsPerPage?: number;
+  showCarousel?: boolean;
+}
+
+const AccessCardBlock = ({
+  accessItems,
+  title = 'Quick Access',
+  showBrowseButton = true,
+  browseButtonText = 'Browse all topics',
+  cardBgColor = 'bg-white',
+  cardTextColor = 'text-gray-700',
+  titleSize = 'text-[28px]',
+  itemsPerPage = ITEMS_PER_PAGE,
+  showCarousel = true,
+}: AccessCardBlockProps) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isClient, setIsClient] = useState(false);
 
   // Initialize from localStorage on mount
   useEffect(() => {
     setIsClient(true);
+    if (!showCarousel) return;
     const savedPage = localStorage.getItem(STORAGE_KEY);
     if (savedPage) {
       const pageNum = parseInt(savedPage, 10);
       // Validate the page number
-      const maxPage = Math.ceil(accessItems.length / ITEMS_PER_PAGE) - 1;
+      const maxPage = Math.ceil(accessItems.length / itemsPerPage) - 1;
       if (pageNum >= 0 && pageNum <= maxPage) {
         setCurrentPage(pageNum);
       }
     }
-  }, [accessItems.length]);
+  }, [accessItems.length, itemsPerPage, showCarousel]);
 
   // Save current page to localStorage
   const handlePageChange = (pageNum: number) => {
     setCurrentPage(pageNum);
-    localStorage.setItem(STORAGE_KEY, pageNum.toString());
+    if (showCarousel) {
+      localStorage.setItem(STORAGE_KEY, pageNum.toString());
+    }
   };
 
-  const totalPages = Math.ceil(accessItems.length / ITEMS_PER_PAGE);
-  const startIndex = currentPage * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-  const currentItems = accessItems.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(accessItems.length / itemsPerPage);
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = showCarousel ? accessItems.slice(startIndex, endIndex) : accessItems;
 
   const goToPreviousPage = () => {
     if (currentPage > 0) {
@@ -51,14 +76,16 @@ const AccessCardBlock = ({ accessItems }: { accessItems: Item[] }) => {
     return (
       <div className="w-full">
         <div className="flex justify-between mb-[39px]">
-          <div className="font-medium text-[28px] leading-[100%]">Quick Access</div>
-          <button className="font-medium text-base leading-[100%] text-[#686868] hover:text-black cursor-pointer">
-            Browse all topics {'>'}
-          </button>
+          <div className={`font-medium ${titleSize} leading-[100%]`}>{title}</div>
+          {showBrowseButton && (
+            <button className="font-medium text-base leading-[100%] text-[#686868] hover:text-black cursor-pointer">
+              {browseButtonText} {'>'}
+            </button>
+          )}
         </div>
         <div className="flex flex-wrap gap-[56px]">
-          {accessItems.slice(0, 6).map((item, index) => (
-            <AccessCard key={item.id} item={item} index={index} />
+          {accessItems.slice(0, itemsPerPage).map((item, index) => (
+            <AccessCard key={item.id} item={item} index={index} bgColor={cardBgColor} textColor={cardTextColor} />
           ))}
         </div>
       </div>
@@ -68,10 +95,12 @@ const AccessCardBlock = ({ accessItems }: { accessItems: Item[] }) => {
   return (
     <div className="w-full">
       <div className="flex justify-between mb-[39px]">
-        <div className="font-medium text-[28px] leading-[100%]">Quick Access</div>
-        <button className="font-medium text-base leading-[100%] text-[#686868] hover:text-black cursor-pointer">
-          Browse all topics {'>'}
-        </button>
+        <div className={`font-medium ${titleSize} leading-[100%]`}>{title}</div>
+        {showBrowseButton && (
+          <button className="font-medium text-base leading-[100%] text-[#686868] hover:text-black cursor-pointer">
+            {browseButtonText} {'>'}
+          </button>
+        )}
       </div>
 
       {/* Carousel Container */}
@@ -79,7 +108,7 @@ const AccessCardBlock = ({ accessItems }: { accessItems: Item[] }) => {
         {/* Items Grid */}
         <div className="flex flex-wrap gap-[56px]">
           {currentItems.map((item, index) => (
-            <AccessCard key={item.id} item={item} index={startIndex + index} />
+            <AccessCard key={item.id} item={item} index={startIndex + index} bgColor={cardBgColor} textColor={cardTextColor} />
           ))}
         </div>
 
@@ -147,18 +176,20 @@ const AccessCardBlock = ({ accessItems }: { accessItems: Item[] }) => {
 interface AccessCardProps {
   item: Item;
   index: number;
+  bgColor?: string;
+  textColor?: string;
 }
 
-const AccessCard = ({ item, index }: AccessCardProps) => {
+const AccessCard = ({ item, index, bgColor = 'bg-white', textColor = 'text-gray-700' }: AccessCardProps) => {
   return (
     <div
       key={item.id}
       id={'access_' + String(index)}
-      className="bg-white p-6 rounded-[25px] w-[calc(33.333%-37.33px)] relative h-[230px]"
+      className={`${bgColor} p-6 rounded-[25px] w-[calc(33.333%-37.33px)] relative h-[230px]`}
     >
       <div className="w-8 h-8 relative mb-4">{item.icon}</div>
       <div className="font-medium text-base leading-[128%] mb-4">{item.title}</div>
-      <div className="font-normal text-base leading-[128%] w-full mt-4 text-[#7e7e7e] line-clamp-3">
+      <div className={`font-normal text-base leading-[128%] w-full mt-4 ${textColor} line-clamp-3`}>
         <span>{item.content}</span>
       </div>
       <div className="absolute bottom-6 right-6">
