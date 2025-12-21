@@ -120,7 +120,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
       <div key={item.link} className="relative">
         {depth > 0 && connectorType === 'vertical' && (
           <div
-            className="absolute border-l-2 border-blue-400"
+            className="absolute border-l-2 border-nyu-400"
             style={{
               left: `${parentIndent}rem`,
               top: 0,
@@ -133,9 +133,9 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
           className={`flex items-center justify-between px-4 py-2 text-sm transition-colors duration-150 relative
             ${
               active
-                ? 'bg-blue-50 text-blue-600 font-medium'
+                ? 'bg-blue-50 text-nyu-600 font-medium'
                 : inActiveChain
-                  ? 'text-blue-500 font-medium'
+                  ? 'text-nyu-500 font-medium'
                   : 'text-gray-700 hover:bg-gray-50'
             }
           `}
@@ -143,7 +143,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
         >
           {connectorType === 'elbow' && (
             <div
-              className="absolute border-l-2 border-b-2 border-blue-400 rounded-bl-lg"
+              className="absolute border-l-2 border-b-2 border-nyu-400 rounded-bl-lg"
               style={{
                 left: '-1.5rem',
                 top: 0,
@@ -156,7 +156,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
           {/* 2. The Tail (Connects Parent to Children) */}
           {hasChildren && isExpanded && inActiveChain && (
             <div
-              className="absolute border-l-2 border-blue-400"
+              className="absolute border-l-2 border-nyu-400"
               style={{
                 left: '-0.5rem',
                 top: '0%',

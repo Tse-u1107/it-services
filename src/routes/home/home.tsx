@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import SearchBar from '../../components/searchBar/searchBar';
 import { useI18nContext } from '../../i18n/i18n-react';
 import ExpandableList from '../../components/expandableList/expandableList';
@@ -20,6 +20,9 @@ import AccessCardBlock from '../../components/accessCard/accessCardBlock';
 import menuItemsJSON from '../../assets/menuItems.json'
 import { processLinks, type FilteredLink } from './components/menuLinks';
 import { loadAuthUser } from 'src/utils/userInfo';
+import { fetchRequest } from '../../api/client/fetchRequest';
+import { search as searchApiUrl } from '../../api/url';
+import type { SearchResult } from '../../api/types/searchTypes';
 
 interface MenuCategories {
   id: string;
@@ -31,13 +34,17 @@ interface MenuCategories {
 const HomeRoute = () => {
 
   const location = useLocation()
-  const [, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
   const { LL } = useI18nContext();
 
   const [userInfo, setUserInfo] = useState([])
 
   const [filteredLinks, setFilteredLinks] = useState<FilteredLink[]>([]);
   const [groupedLinks, setGroupedLinks] = useState<Record<string, FilteredLink[]>>({});
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
 
   const fetchServiceList = async () => {
     const data = menuItemsJSON
@@ -46,6 +53,28 @@ const HomeRoute = () => {
     const { filtered, grouped, stats } = result;
     setFilteredLinks(filtered);
     setGroupedLinks(grouped);
+  };
+
+  const handleSearchChange = async (value: string) => {
+    setSearchValue(value);
+    
+    if (!value.trim()) {
+      setSearchResults([]);
+      return;
+    }
+
+    setIsSearching(true);
+    try {
+      const results = await fetchRequest<SearchResult[]>(
+        `${searchApiUrl}?limit=5&query=${encodeURIComponent(value)}`
+      );
+      setSearchResults(Array.isArray(results) ? results : []);
+    } catch (error) {
+      console.error('Search error:', error);
+      setSearchResults([]);
+    } finally {
+      setIsSearching(false);
+    }
   };
 
   useEffect(() => {
@@ -60,7 +89,27 @@ const HomeRoute = () => {
     }
 
     init()
-  }, []);
+
+    // Handle click outside search container
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
+        setIsSearchFocused(false);
+      }
+    };
+
+    if (isSearchFocused) {
+      document.addEventListener('mousedown', handleClickOutside);
+      // Prevent body scroll when search is focused
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'auto';
+    };
+  }, [isSearchFocused]);
   
 
   console.log(location)
@@ -136,19 +185,47 @@ const HomeRoute = () => {
 
   return (
     <>
+      {isSearchFocused && <div className="search-backdrop" onClick={() => setIsSearchFocused(false)} />}
       <div className="home">
         <div className="home-wrapper-1">
           <div className="mb-[40px] justify-center flex">
             <span className="font-weight-semibold text-5xl">{LL.home.greetingLong()}</span>
           </div>
-          <div className="mb-[19px]">
+          <div className="mb-[19px] relative" ref={searchContainerRef} className={isSearchFocused ? 'search-container-focused' : ''}>
             <SearchBar
               placeholder={LL.common.search() || 'Search'}
-              onChange={(e) => setSearchValue(e.target.value)}
+              value={searchValue}
+              onChange={(e) => handleSearchChange(e.target.value)}
+              onFocus={() => setIsSearchFocused(true)}
               rightButton={<MagnifyingGlassIcon className="icon-5" />}
             />
+            {searchResults.length > 0 && (
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                <div className="p-4">
+                  <div className="text-sm font-semibold text-gray-700 mb-3">Suggested Results</div>
+                  <div className="space-y-3 max-h-96 overflow-y-auto">
+                    {searchResults.map((result, index) => (
+                      <div
+                        key={index}
+                        className="p-3 border border-gray-100 rounded hover:bg-gray-50 cursor-pointer transition-colors"
+                      >
+                        <div className="font-medium text-gray-900 text-sm mb-1">{result.title}</div>
+                        <div className="text-gray-600 text-xs line-clamp-2 mb-2">{result.body}</div>
+                        <Link
+                          to={result.view_node}
+                          className="text-blue-600 hover:text-blue-800 text-xs underline"
+                          onClick={() => setSearchResults([])}
+                        >
+                          View →
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
-          <div>
+          <div className="mt-8">
             <ExpandableList items={categorizeFilteredLinks()} allowMultiple={false} />
           </div>
         </div>
