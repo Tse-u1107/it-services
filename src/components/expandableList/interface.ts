@@ -5,4 +5,5 @@ export interface Item {
   title: string;
   content: string; // optional, default to ""
   icon: React.ReactNode; // optional, can pass a Heroicon component
+  linkTo?: string; // optional, link URL
 }

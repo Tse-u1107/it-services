@@ -1,5 +1,7 @@
 
 export const search = 'api/search'
+export const home = 'api/home'
+
 export const serviceList = 'api/home/services'
 export const menuLinks = 'api/home/menu_links'
 export const serviceContent = 'api/home/service/content?uuid='

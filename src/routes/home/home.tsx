@@ -21,8 +21,9 @@ import menuItemsJSON from '../../assets/menuItems.json'
 import { processLinks, type FilteredLink } from './components/menuLinks';
 import { loadAuthUser } from 'src/utils/userInfo';
 import { fetchRequest } from '../../api/client/fetchRequest';
-import { search as searchApiUrl } from '../../api/url';
+import { search as searchApiUrl, home as homeApiUrl } from '../../api/url';
 import type { SearchResult } from '../../api/types/searchTypes';
+import { transformHomeApiResponse, type HomeApiItem } from '../../utils/transformHomeApi';
 
 interface MenuCategories {
   id: string;
@@ -44,6 +45,8 @@ const HomeRoute = () => {
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [accessItems, setAccessItems] = useState<Item[]>([]);
+  const [accessItemsLoading, setAccessItemsLoading] = useState(true);
   const searchContainerRef = useRef<HTMLDivElement>(null);
 
   const fetchServiceList = async () => {
@@ -53,6 +56,20 @@ const HomeRoute = () => {
     const { filtered, grouped, stats } = result;
     setFilteredLinks(filtered);
     setGroupedLinks(grouped);
+  };
+
+  const fetchHomeApiData = async () => {
+    try {
+      setAccessItemsLoading(true);
+      const data = await fetchRequest<HomeApiItem[]>(homeApiUrl);
+      const transformedItems = transformHomeApiResponse(Array.isArray(data) ? data : []);
+      setAccessItems(transformedItems);
+    } catch (error) {
+      console.error('Error fetching home API data:', error);
+      setAccessItems([]);
+    } finally {
+      setAccessItemsLoading(false);
+    }
   };
 
   const handleSearchChange = async (value: string) => {
@@ -85,6 +102,7 @@ const HomeRoute = () => {
 
     async function init() {
       fetchServiceList();
+      fetchHomeApiData();
       categorizeFilteredLinks();
     }
 
@@ -144,45 +162,6 @@ const HomeRoute = () => {
     }));
   };
 
-  const accessItems: Item[] = [
-    {
-      id: 'access_1',
-      title: LL.home.list.account(),
-      content: 'Account content',
-      icon: <UserIcon className="icon-8" />,
-    },
-    {
-      id: 'access_2',
-      title: LL.home.list.network(),
-      content: 'Network content',
-      icon: <WifiIcon className="icon-8" />,
-    },
-    {
-      id: 'access_3',
-      title: LL.home.list.software(),
-      content: 'Install, update, and manage software applications.',
-      icon: <WindowIcon className="icon-8" />,
-    },
-    {
-      id: 'access_4',
-      title: LL.home.list.hardware(),
-      content: 'Monitor and maintain hardware devices.',
-      icon: <CpuChipIcon className="icon-8" />,
-    },
-    {
-      id: 'access_5',
-      title: LL.home.list.security(),
-      content: 'Review security policies and access control.',
-      icon: <ShieldCheckIcon className="icon-8" />,
-    },
-    {
-      id: 'access_6',
-      title: LL.home.list.support(),
-      content: 'Get help and support services.',
-      icon: <UserGroupIcon className="icon-8" />,
-    },
-  ];
-
   return (
     <>
       {isSearchFocused && <div className="search-backdrop" onClick={() => setIsSearchFocused(false)} />}
@@ -191,7 +170,7 @@ const HomeRoute = () => {
           <div className="mb-[40px] justify-center flex">
             <span className="font-weight-semibold text-5xl">{LL.home.greetingLong()}</span>
           </div>
-          <div className="mb-[19px] relative" ref={searchContainerRef} className={isSearchFocused ? 'search-container-focused' : ''}>
+          <div className={`mb-[19px] relative ${isSearchFocused ? 'search-container-focused' : ''}`} ref={searchContainerRef}>
             <SearchBar
               placeholder={LL.common.search() || 'Search'}
               value={searchValue}
@@ -230,7 +209,13 @@ const HomeRoute = () => {
           </div>
         </div>
         <div className="home-wrapper-2">
-          <AccessCardBlock accessItems={accessItems} />
+          {accessItemsLoading ? (
+            <div className="text-center py-8">Loading quick access items...</div>
+          ) : accessItems.length > 0 ? (
+            <AccessCardBlock accessItems={accessItems} />
+          ) : (
+            <div className="text-center py-8">No quick access items available.</div>
+          )}
         </div>
       </div>
       <IdBanner />
