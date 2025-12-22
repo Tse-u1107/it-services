@@ -14,23 +14,19 @@ function WikiContent({ html, onLinkClick }: { html: string; onLinkClick: (url: s
     <div className="prose prose-lg max-w-none">
       {parse(html, {
         replace: (node) => {
-          // Type guard: only proceed if node is an Element
           if (node instanceof DomElement) {
-            // --- FIX START: Handle Images ---
             if (node.name === 'img' && node.attribs && node.attribs.src) {
-              // Check if the src is a relative path (starts with /)
               if (node.attribs.src.startsWith('/')) {
                 return (
                   <img
-                    {...node.attribs} // Spread existing attributes (alt, width, etc.)
-                    src={`${baseUrl}${node.attribs.src}`} // Prepend base URL
+                    {...node.attribs}
+                    src={`${baseUrl}${node.attribs.src}`} 
                   />
                 );
               }
             }
-            // --- FIX END ---
 
-            // Handle Links (Your existing logic)
+            // Links
             if (node.name === 'a' && node.attribs?.href?.startsWith(baseUrl)) {
               const url = node.attribs.href;
               return (
@@ -40,8 +36,6 @@ function WikiContent({ html, onLinkClick }: { html: string; onLinkClick: (url: s
               );
             }
           }
-
-          // Otherwise: return nothing → keep original node
           return undefined;
         },
       })}
@@ -171,7 +165,6 @@ const GuideRoute = () => {
                   onLinkClick={(url) => handleNavigateFromButton(url)}
                 />
               ) : (
-                // <div className="prose prose-lg max-w-none">{parse(String(contentData))}</div>
                 <div className="text-center py-12 text-gray-500">
                   <p>Select a topic from the sidebar to view content.</p>
                 </div>

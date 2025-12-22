@@ -60,7 +60,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 flex h-[55px] w-full justify-center border-b border-[#e5e5ea]/50 bg-[#f5f5f7] mb-[2px]">
+    <nav className={`sticky top-0 z-50 flex h-[55px] w-full justify-center border-b border-[#e5e5ea]/50 mb-[2px] ${pathname === '/home' ? 'bg-[#f5f5f7]' : 'bg-white'}`}>
       {/* <div className="flex h-full w-full max-w-[1400px] items-center justify-between"> */}
       <div className="flex w-full max-w-[1400px] items-center justify-between px-6">
         {/* Navigation Links */}

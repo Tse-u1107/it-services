@@ -1,5 +1,6 @@
 import React from 'react';
 import { type FooterLink, type FooterSection, type FooterProps } from './interface';
+import { useLocation } from 'react-router-dom';
 
 const FooterComponent: React.FC<FooterProps> = ({
   sections,
@@ -7,8 +8,14 @@ const FooterComponent: React.FC<FooterProps> = ({
   bottomLinks,
   languageSelector,
 }) => {
+  
+  const location = useLocation();
+  const { pathname } = location;
+
   return (
-    <footer className="w-full bg-gray-100 text-gray-700 text-sm">
+    <footer
+      className={`w-full bg-gray-100 text-gray-700 text-sm ${pathname === '/home' ? 'bg-[#f5f5f7]' : 'bg-white'}`}
+    >
       {/* Main Footer Content */}
       <div className="max-w-5xl mx-auto px-6 py-8">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
