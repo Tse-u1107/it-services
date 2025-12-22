@@ -1,19 +1,20 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { MagnifyingGlassIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
-import './Navbar.css';
 import { login } from 'src/api/url';
 import { fetchRequest } from 'src/api/client/fetchRequest';
 import { loadAuthUser } from 'src/utils/userInfo';
 import { useEffect, useState, useRef } from 'react';
+
+// You can delete import './Navbar.css';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
 
-  const [authUser, setAuthUser] = useState();
+  const [authUser, setAuthUser] = useState<any>(); // Added basic type safety hint
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const fetchServiceList = async () => {
     const data = await fetchRequest(login);
@@ -31,10 +32,9 @@ const Navbar = () => {
     setAuthUser(data);
   }, []);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsDropdownOpen(false);
       }
     };
@@ -43,52 +43,72 @@ const Navbar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleMenuAction = (action) => {
+  const handleMenuAction = (action: string) => {
     console.log(`Menu action: ${action}`);
     setIsDropdownOpen(false);
   };
 
+  // Helper to generate tailwind classes for navigation links
+  const getLinkClass = (path: string) => {
+    const baseStyle =
+      'px-4 py-2 text-[14px] font-normal transition-all duration-200 bg-transparent border-b-2 cursor-pointer';
+    const activeStyle = 'text-[#57068c] border-[#57068c] pb-[7px]';
+    const inactiveStyle =
+      'text-[#1d1d1f] border-transparent hover:text-[#6e6e73] hover:border-[#57068c] hover:pb-[7px]';
+
+    return `${baseStyle} ${pathname === path ? activeStyle : inactiveStyle}`;
+  };
+
   return (
-    <nav className="navbar h-15">
-      <div className="navbar-container">
-        <div className="navbar-links mx-2 flex-1">
-          <button
-            className={pathname === '/home' ? 'active' : ''}
+    <nav className="sticky top-0 z-50 flex h-[55px] w-full justify-center border-b border-[#e5e5ea]/50 bg-[#f5f5f7] mb-[2px]">
+      {/* <div className="flex h-full w-full max-w-[1400px] items-center justify-between"> */}
+      <div className="flex w-full max-w-[1400px] items-center justify-between px-6">
+        {/* Navigation Links */}
+        <div className="flex flex-1 justify-start">
+          <div
             onClick={() => navigate('/home')}
+            className="cursor-pointer text-purple-700 font-bold text-xl"
           >
-            Home
-          </button>
-          <button
-            className={pathname === '/categories' ? 'active' : ''}
-            onClick={() => navigate('/categories')}
-          >
-            Categories
-          </button>
-          <button
-            className={pathname === '/guides' ? 'active' : ''}
-            onClick={() => navigate('/guides')}
-          >
-            Guides
-          </button>
-          <button className={pathname === '/faq' ? 'active' : ''} onClick={() => navigate('/faq')}>
-            FAQ
-          </button>
-          <button
-            className={pathname === '/about' ? 'active' : ''}
-            onClick={() => navigate('/about')}
-          >
-            About
-          </button>
+            <img src="src/assets/logo_0.png" className="icon-6" />
+          </div>
+        </div>
+        <div className="mx-2 flex flex-1 items-center gap-8">
+          <div className="flex flex-1 items-center gap-8">
+            <button className={getLinkClass('/home')} onClick={() => navigate('/home')}>
+              Home
+            </button>
+            <button className={getLinkClass('/categories')} onClick={() => navigate('/categories')}>
+              Categories
+            </button>
+            <button className={getLinkClass('/guides')} onClick={() => navigate('/guides')}>
+              Guides
+            </button>
+            <button className={getLinkClass('/faq')} onClick={() => navigate('/faq')}>
+              FAQ
+            </button>
+            <button className={getLinkClass('/about')} onClick={() => navigate('/about')}>
+              About
+            </button>
+            <button className="flex items-center justify-center bg-transparent px-2 text-[#1d1d1f] hover:text-[#6e6e73]">
+              <MagnifyingGlassIcon className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        <div className="flex flex-1 justify-end items-center gap-6">
+          {/* User Profile / Login Section */}
           {authUser ? (
             <div className="relative inline-block" ref={dropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center gap-1 hover:opacity-80 transition-opacity"
+                className="flex items-center gap-1 text-[14px] text-[#1d1d1f] hover:opacity-80 transition-opacity px-4"
               >
                 User: {authUser?.email}
-                <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                <ChevronDownIcon
+                  className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                />
               </button>
-              
+
               {isDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
                   <button
@@ -113,14 +133,16 @@ const Navbar = () => {
               )}
             </div>
           ) : (
-            <button onClick={() => handleLogin()}>Login</button>
+            <button
+              className={getLinkClass('login-btn-placeholder')} // Uses inactive style by default
+              onClick={() => handleLogin()}
+            >
+              Login
+            </button>
           )}
-          <button className="bg-transparent">
-            <MagnifyingGlassIcon className="w-5 h-5 bg-transparent" />
+          <button className="px-4 py-2 text-[14px] text-[#1d1d1f] hover:text-[#6e6e73] transition-colors">
+            EN/CN
           </button>
-        </div>
-        <div>
-          <button>Lang</button>
         </div>
       </div>
     </nav>

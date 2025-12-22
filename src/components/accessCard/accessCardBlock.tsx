@@ -187,7 +187,7 @@ const AccessCard = ({ item, index, bgColor = 'bg-white', textColor = 'text-gray-
       id={'access_' + String(index)}
       className={`${bgColor} p-6 rounded-[25px] w-[calc(33.333%-37.33px)] relative h-[230px]`}
     >
-      <div className="w-8 h-8 relative mb-4">{item.icon}</div>
+      <div className="icon-8 relative mb-4">{item.icon}</div>
       <div className="font-medium text-base leading-[128%] mb-4">{item.title}</div>
       <div className={`font-normal text-base leading-[128%] w-full mt-4 ${textColor} line-clamp-3`}>
         <span>{item.content}</span>
@@ -198,14 +198,14 @@ const AccessCard = ({ item, index, bgColor = 'bg-white', textColor = 'text-gray-
             href={item.linkTo}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-black rounded-full flex items-center justify-center cursor-pointer w-8 h-8 hover:bg-gray-800 transition-colors"
+            className="bg-black rounded-full flex items-center justify-center cursor-pointer icon-8 hover:bg-gray-800 transition-colors"
             aria-label={`Open ${item.title}`}
           >
-            <PlusIcon className="w-8 h-8 text-white" />
+            <PlusIcon className="icon-8 text-white" />
           </a>
         ) : (
-          <button className="bg-black rounded-full flex items-center justify-center cursor-pointer w-8 h-8 hover:bg-gray-800 transition-colors">
-            <PlusIcon className="w-8 h-8 text-white" />
+          <button className="bg-black rounded-full flex items-center justify-center cursor-pointer icon-8 hover:bg-gray-800 transition-colors">
+            <PlusIcon className="icon-8 text-white" />
           </button>
         )}
       </div>

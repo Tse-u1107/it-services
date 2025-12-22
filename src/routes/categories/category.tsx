@@ -135,7 +135,7 @@ const CategoryRoute = () => {
             <AccessCardBlock 
               accessItems={accessItems}
               title="Quick Access"
-              showBrowseButton={true}
+              showBrowseButton={false}
               browseButtonText="Browse all topics"
               cardBgColor="bg-off-white"
               cardTextColor="text-[#2F2F2F]"
@@ -162,14 +162,14 @@ const CategoryRoute = () => {
                   id={'access_' + String(index)}
                   className="bg-off-white p-6 rounded-[25px] w-[calc(33.333%-37.33px)] relative h-[230px]"
                 >
-                  <div className="w-8 h-8 relative mb-4">{item.icon}</div>
+                  <div className="icon-8 relative mb-4">{item.icon}</div>
                   <div className="font-medium text-base mb-4">{item.title}</div>
                   <div className="font-normal text-base w-full mt-4 color-[#2F2F2F]">
                     {item.content}
                   </div>
                   <div className="absolute bottom-6 right-6">
-                    <button className="bg-black rounded-full flex items-center justify-center cursor-pointer w-8 h-8">
-                      <PlusIcon className="w-8 h-8 text-white" />
+                    <button className="bg-black rounded-full flex items-center justify-center cursor-pointer icon-8">
+                      <PlusIcon className="icon-8 text-white" />
                     </button>
                   </div>
                 </div>

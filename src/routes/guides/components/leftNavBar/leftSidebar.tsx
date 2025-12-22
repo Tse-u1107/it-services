@@ -95,7 +95,10 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
   const isActive = (link: string) => currentPath === link;
   const isInActiveChain = (link: string) => activePathChain.has(link);
 
-  // Updated Signature: Added connectorType
+  const getColorByDepth = (depth: number): string => {
+    return depth === 0 ? 'text-abyss-500 font-semibold' : 'text-abyss-400';
+  };
+
   const renderItem = (
     item: NavItem,
     depth: number = 0,
@@ -108,7 +111,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
 
     // Indentation math
     const parentIndent = 0.75 + (depth - 1) * 1;
-    const paddingLeft = 1.25 + depth * 1;
+    const paddingLeft = 0.25 + depth * 1; 
 
     // Calculate which child is on the active path
     let activeChildIndex = -1;
@@ -116,36 +119,41 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
       activeChildIndex = item.children!.findIndex((child) => isInActiveChain(child.link));
     }
 
+    // Check if any direct child is selected
+    const childIsSelected = hasChildren && item.children!.some((child) => isActive(child.link));
+
     return (
-      <div key={item.link} className="relative">
+      <div key={item.link} className="relative w-full">
         {depth > 0 && connectorType === 'vertical' && (
           <div
             className="absolute border-l-2 border-nyu-400"
             style={{
-              left: `${parentIndent}rem`,
+              left: `${parentIndent - 1}rem`,
               top: 0,
               bottom: 0,
+              zIndex: 0
             }}
           />
         )}
-
         <div
-          className={`flex items-center justify-between px-4 py-2 text-sm transition-colors duration-150 relative
+          className={`flex items-center justify-between text-sm transition-colors duration-150 relative w-full
+            ${getColorByDepth(depth)}
             ${
               active
-                ? 'bg-blue-50 text-nyu-600 font-medium'
+                ? 'text-nyu-600 font-medium'
                 : inActiveChain
                   ? 'text-nyu-500 font-medium'
-                  : 'text-gray-700 hover:bg-gray-50'
+                  : ''
             }
           `}
-          style={{ marginLeft: `${paddingLeft}rem` }}
+          style={{ paddingLeft: `${paddingLeft}rem` }}
         >
+          {/* Connector: Elbow */}
           {connectorType === 'elbow' && (
             <div
               className="absolute border-l-2 border-b-2 border-nyu-400 rounded-bl-lg"
               style={{
-                left: '-1.5rem',
+                left: `${paddingLeft - 1.5}rem`, 
                 top: 0,
                 height: '50%',
                 width: '0.5rem',
@@ -153,20 +161,21 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
             />
           )}
 
-          {/* 2. The Tail (Connects Parent to Children) */}
-          {hasChildren && isExpanded && inActiveChain && (
+          {/* Connector: Tail (Connects Parent to Children) */}
+          {hasChildren && isExpanded && inActiveChain && childIsSelected && (
             <div
               className="absolute border-l-2 border-nyu-400"
               style={{
-                left: '-0.5rem',
-                top: '0%',
+                 // CHANGED: Calculated relative to the padding
+                left: `${paddingLeft -0.5}rem`,
+                top: '50%',
                 bottom: 0,
               }}
             />
           )}
 
           <button
-            className="flex-1 text-left truncate relative z-10"
+            className="flex-1 text-left truncate relative z-10 mb-3"
             onClick={() => {
               if (hasChildren) toggleExpand(item.link);
               onNavigate({ link: item.link, uuid: item.uuid });
@@ -178,7 +187,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
           {hasChildren && (
             <button
               aria-label={isExpanded ? 'Collapse section' : 'Expand section'}
-              className="w-6 h-6 flex items-center justify-center rounded hover:bg-gray-200 z-10"
+              className="w-6 h-6 flex items-center mb-3 justify-center rounded hover:bg-gray-200 z-10 ml-2"
               onClick={(e) => {
                 e.stopPropagation();
                 toggleExpand(item.link);
@@ -194,7 +203,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
         </div>
 
         {hasChildren && isExpanded && (
-          <div className="relative">
+          <div className="relative w-full">
             {item.children!.map((child, index) => {
               let childConnectorType: 'none' | 'vertical' | 'elbow' = 'none';
 
@@ -215,20 +224,22 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
   };
 
   return (
-    <aside className="w-80 bg-white border-r border-gray-200 h-screen overflow-y-auto">
-      <div className="pr-7 pl-4 pt-4">
-        <div className="relative mb-4">
-          <MagnifyingGlassIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-        <nav>
-          {filteredItems.map((item) => renderItem(item))} {/* Roots always have 'none' */}
+    <aside className="w-80 bg-white border-r border-gray-200 h-screen overflow-y-auto flex flex-col">
+      <div className="pl-22 pr-7 pt-2 w-full"> 
+        <nav className="space-y-1 w-full">
+          <div className='flex justify-center w-full mb-4'>
+            <div className='relative w-full text-abyss-500'>
+              <MagnifyingGlassIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                placeholder="Search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-9 pr-3 py-[10px] text-abyss-500 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-nyu-500"
+              />
+            </div>
+          </div>
+          {filteredItems.map((item) => renderItem(item))}
           {filteredItems.length === 0 && (
             <div className="py-8 text-center text-gray-500 text-sm">
               {searchQuery ? `No results for "${searchQuery}"` : 'No items available'}

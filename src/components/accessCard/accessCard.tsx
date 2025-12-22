@@ -18,7 +18,7 @@ export const AccessCard = ({
       <div className="w-full mt-4 text-base text-gray-500 leading-relaxed">{content}</div>
       <div className="absolute bottom-8 right-8">
         <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-800 transition-colors">
-          <PlusIcon className="w-8 h-8 text-white stroke-[2.5]" />
+          <PlusIcon className="icon-8 text-white stroke-[2.5]" />
         </div>
       </div>
     </div>

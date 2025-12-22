@@ -60,7 +60,7 @@ export const transformHomeApiResponse = (apiResponse: HomeApiItem[]): Item[] => 
       id: generateId(item.field_linkto, index),
       title: cleanTitle,
       content: item.body,
-      icon: imageSrc ? React.createElement('img', { src: 'https://wiki.it.shanghai.nyu.edu/' + imageSrc, alt: cleanTitle, className: 'w-8 h-8' }) : null,
+      icon: imageSrc ? React.createElement('img', { src: 'https://wiki.it.shanghai.nyu.edu/' + imageSrc, alt: cleanTitle, className: 'icon-8' }) : null,
       linkTo: linkHref,
     };
   });
