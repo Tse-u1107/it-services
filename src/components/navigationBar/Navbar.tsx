@@ -2,17 +2,15 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { MagnifyingGlassIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { login } from 'src/api/url';
 import { fetchRequest } from 'src/api/client/fetchRequest';
-import { loadAuthUser } from 'src/utils/userInfo';
+import { loadAuthUser, clearAuthUser } from 'src/utils/userInfo';
 import { useEffect, useState, useRef } from 'react';
-
-// You can delete import './Navbar.css';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
 
-  const [authUser, setAuthUser] = useState<any>(); // Added basic type safety hint
+  const [authUser, setAuthUser] = useState<any>();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -24,7 +22,24 @@ const Navbar = () => {
 
   const handleLogin = async () => {
     const res = await fetchServiceList();
-    window.open(res.url);
+    const authWindow = window.open(res.url);
+    
+    // Listen for the login success message from the callback window
+    const handleMessage = (event: MessageEvent) => {
+      // Verify the message is from the expected origin
+      if (event.origin !== window.location.origin) return;
+      
+      if (event.data.type === 'LOGIN_SUCCESS') {
+        // Reload the auth user data
+        const data = loadAuthUser();
+        setAuthUser(data);
+        
+        // Remove the listener
+        window.removeEventListener('message', handleMessage);
+      }
+    };
+    
+    window.addEventListener('message', handleMessage);
   };
 
   useEffect(() => {
@@ -44,7 +59,12 @@ const Navbar = () => {
   }, []);
 
   const handleMenuAction = (action: string) => {
-    console.log(`Menu action: ${action}`);
+    if (action === 'logout') {
+      clearAuthUser();
+      setAuthUser(null);
+      setIsDropdownOpen(false);
+      navigate('/home');
+    }
     setIsDropdownOpen(false);
   };
 
@@ -60,20 +80,16 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`sticky top-0 z-50 flex h-[55px] w-full justify-center border-b border-[#e5e5ea]/50 mb-[2px] ${pathname === '/home' ? 'bg-[#f5f5f7]' : 'bg-white'}`}>
-      {/* <div className="flex h-full w-full max-w-[1400px] items-center justify-between"> */}
+    <nav
+      className={`sticky top-0 z-35 flex h-[55px] w-full justify-center border-b border-[#e5e5ea]/50 mb-[2px] bg-white`}
+    >
       <div className="flex w-full max-w-[1400px] items-center justify-between px-6">
-        {/* Navigation Links */}
-        <div className="flex flex-1 justify-start">
-          <div
-            onClick={() => navigate('/home')}
-            className="cursor-pointer text-purple-700 font-bold text-xl"
-          >
-            <img src="src/assets/logo_0.png" className="icon-6" />
-          </div>
-        </div>
+        <div className="flex flex-1" />
         <div className="mx-2 flex flex-1 items-center gap-8">
           <div className="flex flex-1 items-center gap-8">
+            <button onClick={() => navigate('/home')} className="text-purple-700  icon-6">
+              <img src="src/assets/logo_0.png" className="icon-6" />
+            </button>
             <button className={getLinkClass('/home')} onClick={() => navigate('/home')}>
               Home
             </button>

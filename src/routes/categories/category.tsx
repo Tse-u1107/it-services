@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import SearchBar from '../../components/searchBar/searchBar';
+import SearchBar from '../../components/navigationBar/components/searchBar/searchBar';
 import { useI18nContext } from '../../i18n/i18n-react';
 import Breadcrumbs from '../../components/breadCrumbs/breadCrumbs';
 import CategorySection from './components/categorySection';

@@ -16,13 +16,12 @@ export function loadAuthUser() {
 
   const expiresAt = Number(expStr);
 
-  // Clear if expired
   if (Date.now() > expiresAt) {
     clearAuthUser();
     return null;
   }
 
-  return JSON.parse(userStr); // full user object restored
+  return JSON.parse(userStr);
 }
 
 export function clearAuthUser() {

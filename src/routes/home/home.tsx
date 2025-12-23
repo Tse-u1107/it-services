@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef } from 'react';
-import SearchBar from '../../components/searchBar/searchBar';
+import SearchBar from '../../components/navigationBar/components/searchBar/searchBar';
 import { useI18nContext } from '../../i18n/i18n-react';
 import ExpandableList from '../../components/expandableList/expandableList';
 import type { Item } from '../../components/expandableList/interface';
-import { Link, useLocation } from 'react-router-dom';
-import './home.css';
+import { Link } from 'react-router-dom';
+// REMOVED: import './home.css'; 
 
 import {
   MagnifyingGlassIcon,
@@ -17,7 +17,7 @@ import {
 } from '@heroicons/react/24/outline';
 import IdBanner from './components/banner';
 import AccessCardBlock from '../../components/accessCard/accessCardBlock';
-import menuItemsJSON from '../../assets/menuItems.json'
+import menuItemsJSON from '../../assets/menuItems.json';
 import { processLinks, type FilteredLink } from './components/menuLinks';
 import { loadAuthUser } from 'src/utils/userInfo';
 import { fetchRequest } from '../../api/client/fetchRequest';
@@ -28,32 +28,30 @@ import { transformHomeApiResponse, type HomeApiItem } from '../../utils/transfor
 interface MenuCategories {
   id: string;
   title: string;
-  content: React.ReactNode; // optional, default to ""
-  icon: React.ReactNode; // optional, can pass a Heroicon component
+  content: React.ReactNode;
+  icon: React.ReactNode;
 }
 
 const HomeRoute = () => {
-
-  const location = useLocation()
   const [searchValue, setSearchValue] = useState('');
   const { LL } = useI18nContext();
 
-  const [userInfo, setUserInfo] = useState([])
-
   const [filteredLinks, setFilteredLinks] = useState<FilteredLink[]>([]);
   const [groupedLinks, setGroupedLinks] = useState<Record<string, FilteredLink[]>>({});
+
+  // Search State
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+
   const [accessItems, setAccessItems] = useState<Item[]>([]);
   const [accessItemsLoading, setAccessItemsLoading] = useState(true);
   const searchContainerRef = useRef<HTMLDivElement>(null);
 
   const fetchServiceList = async () => {
-    const data = menuItemsJSON
-    
+    const data = menuItemsJSON;
     const result = processLinks(data);
-    const { filtered, grouped, stats } = result;
+    const { filtered, grouped } = result;
     setFilteredLinks(filtered);
     setGroupedLinks(grouped);
   };
@@ -74,7 +72,7 @@ const HomeRoute = () => {
 
   const handleSearchChange = async (value: string) => {
     setSearchValue(value);
-    
+
     if (!value.trim()) {
       setSearchResults([]);
       return;
@@ -94,43 +92,40 @@ const HomeRoute = () => {
     }
   };
 
+  // --- Auto-Scroll Logic ---
   useEffect(() => {
+    if (searchResults.length > 0 && isSearchFocused && searchContainerRef.current) {
+      searchContainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, [searchResults, isSearchFocused]);
 
-    const localUserInfo = loadAuthUser()
-
-    console.log(localUserInfo, userInfo)
+  useEffect(() => {
+    loadAuthUser();
 
     async function init() {
       fetchServiceList();
       fetchHomeApiData();
-      categorizeFilteredLinks();
     }
-
-    init()
+    init();
 
     // Handle click outside search container
     const handleClickOutside = (event: MouseEvent) => {
-      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
+      if (
+        searchContainerRef.current &&
+        !searchContainerRef.current.contains(event.target as Node)
+      ) {
         setIsSearchFocused(false);
       }
     };
 
     if (isSearchFocused) {
       document.addEventListener('mousedown', handleClickOutside);
-      // Prevent body scroll when search is focused
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'auto';
     };
   }, [isSearchFocused]);
-  
-
-  console.log(location)
 
   const categorizeFilteredLinks = (): MenuCategories[] => {
     const iconMap: Record<string, React.ReactNode> = {
@@ -142,8 +137,6 @@ const HomeRoute = () => {
       'Support & Services': <UserGroupIcon className="icon-5" />,
     };
 
-    console.log(groupedLinks);
-
     return Object.entries(groupedLinks).map(([category, links], index) => ({
       id: `cat_${index}`,
       title: category,
@@ -151,7 +144,7 @@ const HomeRoute = () => {
         <ul className="[&>li:not(:last-child)]:mb-6">
           {links.map((link, i) => (
             <li key={i} className="text-md hover:underline hover:text-purple-600 transition-colors">
-              <Link to={`/guides`} state={{ title: link.title, link: link.link, uuid: link.uuid  }}>
+              <Link to={`/guides`} state={{ title: link.title, link: link.link, uuid: link.uuid }}>
                 {link.title}
               </Link>
             </li>
@@ -164,51 +157,33 @@ const HomeRoute = () => {
 
   return (
     <>
-      {isSearchFocused && <div className="search-backdrop" onClick={() => setIsSearchFocused(false)} />}
-      <div className="home">
-        <div className="home-wrapper-1">
+      <div className="flex flex-col items-center max-w-[1080px] mx-auto pt-10 pb-8">
+        <div className="w-full max-w-[760px] flex-1 mb-[76px]">
           <div className="mb-[40px] justify-center flex">
             <span className="font-weight-semibold text-5xl">{LL.home.greetingLong()}</span>
           </div>
-          <div className={`mb-[19px] relative ${isSearchFocused ? 'search-container-focused' : ''}`} ref={searchContainerRef}>
+
+          <div
+            className={`w-full mx-auto mb-8 relative transition-all duration-300 ${isSearchFocused ? 'z-50' : 'z-10'}`}
+            ref={searchContainerRef}
+          >
             <SearchBar
               placeholder={LL.common.search() || 'Search'}
               value={searchValue}
               onChange={(e) => handleSearchChange(e.target.value)}
               onFocus={() => setIsSearchFocused(true)}
               rightButton={<MagnifyingGlassIcon className="icon-5" />}
+              results={searchResults}
+              searchFocused={isSearchFocused}
+              onResultClick={() => setSearchResults([])}
             />
-            {searchResults.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                <div className="p-4">
-                  <div className="text-sm font-semibold text-gray-700 mb-3">Suggested Results</div>
-                  <div className="space-y-3 max-h-96 overflow-y-auto">
-                    {searchResults.map((result, index) => (
-                      <div
-                        key={index}
-                        className="p-3 border border-gray-100 rounded hover:bg-gray-50 cursor-pointer transition-colors"
-                      >
-                        <div className="font-medium text-gray-900 text-sm mb-1">{result.title}</div>
-                        <div className="text-gray-600 text-xs line-clamp-2 mb-2">{result.body}</div>
-                        <Link
-                          to={result.view_node}
-                          className="text-blue-600 hover:text-blue-800 text-xs underline"
-                          onClick={() => setSearchResults([])}
-                        >
-                          View →
-                        </Link>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
-          <div className="mt-8">
+
+          <div className="mt-8 transition-transform duration-300">
             <ExpandableList items={categorizeFilteredLinks()} allowMultiple={false} />
           </div>
         </div>
-        <div className="home-wrapper-2">
+        <div className="w-full max-w-[1080px] mb-[76px]">
           {accessItemsLoading ? (
             <div className="text-center py-8">Loading quick access items...</div>
           ) : accessItems.length > 0 ? (
