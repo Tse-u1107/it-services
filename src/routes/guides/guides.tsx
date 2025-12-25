@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import LeftSidebar from './components/leftNavBar/leftSidebar';
-import ContentLayout from '../../layout/content';
+import ContentLayout from '../../layout/guide_content/content';
 import { fetchRequest } from '../../api/client/fetchRequest';
 import { serviceContent } from '../../api/url';
 import menuItems from './constants/menuItems.json';
@@ -9,6 +9,7 @@ import parse, { domToReact, type DOMNode, Element as DomElement } from 'html-rea
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { extractHeadingHierarchy, type HeadingNode } from './utils/headingExtractor';
 import { useCallback, useRef } from 'react';
+import LoadingSpinner from 'src/components/loadingSpinner/loadingSpinner';
 
 const slugify = (text: string) => {
   return text
@@ -63,7 +64,10 @@ const WikiContent = ({
           if (node.name === 'h2') {
             return (
               <>
-                <hr className="guide-component w-full border-t border-1 border-gray-300 my-8" style={{ border: '0.4px solid #F5F5F7'}}/>
+                <hr
+                  className="guide-component w-full border-t border-1 border-gray-300 my-8"
+                  style={{ border: '0.4px solid #F5F5F7' }}
+                />
                 <h2
                   id={id}
                   className="guide-component text-2xl font-bold text-gray-900 mb-4 scroll-mt-24"
@@ -134,7 +138,6 @@ const WikiContent = ({
   return <div className="prose prose-lg max-w-none text-gray-600">{parse(html, parseOptions)}</div>;
 };
 
-
 const TableOfContents = ({ headings }: { headings: HeadingData[] }) => {
   const [activeId, setActiveId] = useState<string>('');
 
@@ -182,22 +185,25 @@ const TableOfContents = ({ headings }: { headings: HeadingData[] }) => {
   const visibleHeadings = headings.filter((h) => h.level <= 3);
 
   return (
-    <nav className="space-y-1">
-      <h3 className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-wider">
-        On This Page
-      </h3>
-      <ul className="border-l-2 border-gray-100 pl-0">
-        {visibleHeadings.map((heading) => (
-          <li key={heading.id} className="relative">
-            <a
-              href={`#${heading.id}`}
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' });
-                // Manually set active immediately for snappiness
-                setActiveId(heading.id);
-              }}
-              className={`
+    <div className="p-4 sticky top-[50px]">
+      <div className="hidden xl:block w-64 shrink-0">
+        <div className="sticky top-[100px] max-h-[calc(100vh-120px)] overflow-y-auto pb-10">
+          <nav className="space-y-1">
+            <h3 className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-wider">
+              On This Page
+            </h3>
+            <ul className="border-l-2 border-gray-100 pl-0">
+              {visibleHeadings.map((heading) => (
+                <li key={heading.id} className="relative">
+                  <a
+                    href={`#${heading.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById(heading.id)?.scrollIntoView({ behavior: 'smooth' });
+                      // Manually set active immediately for snappiness
+                      setActiveId(heading.id);
+                    }}
+                    className={`
                 block py-2 pr-2 text-sm transition-all duration-300
                 ${heading.level === 3 ? 'pl-6' : 'pl-4'}
                 ${
@@ -206,13 +212,16 @@ const TableOfContents = ({ headings }: { headings: HeadingData[] }) => {
                     : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50 border-l-4 border-transparent -ml-[2px]'
                 }
               `}
-            >
-              {heading.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+                  >
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -384,45 +393,26 @@ const GuideRoute = () => {
             onNavigate={(data) => handleNavigate(data)}
           />
         }
-        rightSideBar={
-          <div className="p-4 sticky top-[50px]">
-            <div className="hidden xl:block w-64 shrink-0">
-              <div className="sticky top-[100px] max-h-[calc(100vh-120px)] overflow-y-auto pb-10">
-                <TableOfContents headings={headings} />
-              </div>
-            </div>
-          </div>
-        }
+        error={String(error)}
+        rightSideBar={<TableOfContents headings={headings} />}
       >
         <div className="max-w-4xl p-0">
-          {isLoading ? (
-            <div className="flex items-center justify-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-nyu-700"></div>
-            </div>
-          ) : error ? (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
-              <h3 className="font-semibold mb-1">Error</h3>
-              <p>{error}</p>
-            </div>
+          {breadcrumbs && <Breadcrumbs crumbs={breadcrumbs} onNavigate={handleNavigate} />}
+          {contentTitle && <h1 className="text-[40px] font-bold mb-8">{contentTitle}</h1>}
+          {contentData ? (
+            <WikiContent
+              html={contentData}
+              onLinkClick={(url) => handleNavigateFromButton(url)}
+              onHeadingsParsed={handleHeadingsParsed}
+            />
           ) : (
-            <>
-              {contentTitle && <h1 className="text-[40px] font-bold mb-8">{contentTitle}</h1>}
-              {breadcrumbs && <Breadcrumbs crumbs={breadcrumbs} onNavigate={handleNavigate} />}
-              {contentData ? (
-                <WikiContent
-                  html={contentData}
-                  onLinkClick={(url) => handleNavigateFromButton(url)}
-                  onHeadingsParsed={handleHeadingsParsed}
-                />
-              ) : (
-                <div className="text-center py-12 text-gray-500">
-                  <p>Select a topic from the sidebar to view content.</p>
-                </div>
-              )}
-            </>
+            <div className="text-center py-12 text-gray-500">
+              <p>Select a topic from the sidebar to view content.</p>
+            </div>
           )}
         </div>
       </ContentLayout>
+      {isLoading && <LoadingSpinner />}
     </div>
   );
 };

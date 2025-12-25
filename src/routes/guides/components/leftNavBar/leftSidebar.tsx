@@ -96,7 +96,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
   const isInActiveChain = (link: string) => activePathChain.has(link);
 
   const getColorByDepth = (depth: number): string => {
-    return depth === 0 ? 'text-abyss-500 font-semibold' : 'text-abyss-400';
+    return depth === 0 ? 'text-abyss-500 font-medium' : 'text-abyss-400 font-regular';
   };
 
   const renderItem = (
@@ -111,7 +111,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
 
     // Indentation math
     const parentIndent = 0.75 + (depth - 1) * 1;
-    const paddingLeft = 0.25 + depth * 1; 
+    const paddingLeft = 0.25 + depth * 1;
 
     // Calculate which child is on the active path
     let activeChildIndex = -1;
@@ -131,20 +131,14 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
               left: `${parentIndent - 1}rem`,
               top: 0,
               bottom: 0,
-              zIndex: 0
+              zIndex: 0,
             }}
           />
         )}
         <div
           className={`flex items-center justify-between text-sm transition-colors duration-150 relative w-full
             ${getColorByDepth(depth)}
-            ${
-              active
-                ? 'text-nyu-600 font-medium'
-                : inActiveChain
-                  ? 'text-nyu-500 font-medium'
-                  : ''
-            }
+            ${active ? 'text-nyu-600 font-medium' : inActiveChain ? 'text-nyu-500 font-medium' : ''}
           `}
           style={{ paddingLeft: `${paddingLeft}rem` }}
         >
@@ -153,7 +147,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
             <div
               className="absolute border-l-2 border-b-2 border-nyu-400 rounded-bl-lg"
               style={{
-                left: `${paddingLeft - 1.5}rem`, 
+                left: `${paddingLeft - 1.5}rem`,
                 top: 0,
                 height: '50%',
                 width: '0.5rem',
@@ -166,8 +160,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
             <div
               className="absolute border-l-2 border-nyu-400"
               style={{
-                 // CHANGED: Calculated relative to the padding
-                left: `${paddingLeft -0.5}rem`,
+                left: `${paddingLeft - 0.5}rem`,
                 top: '50%',
                 bottom: 0,
               }}
@@ -194,9 +187,10 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
               }}
             >
               <ChevronRightIcon
-                className={`w-3 h-3 text-gray-400 transition-transform duration-200 ${
+              strokeWidth={2}
+                className={`w-3 h-3 transition-transform duration-200 ${
                   isExpanded ? 'rotate-90' : ''
-                }`}
+                } ${getColorByDepth(depth)}`}
               />
             </button>
           )}
@@ -224,18 +218,19 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
   };
 
   return (
-    <aside className="w-80 bg-white border-r border-gray-200 h-screen overflow-y-auto flex flex-col">
-      <div className="pl-22 pr-7 pt-2 w-full"> 
-        <nav className="space-y-1 w-full">
-          <div className='flex justify-center w-full mb-4'>
-            <div className='relative w-full text-abyss-500'>
+    <aside className="w-full bg-white border-r border-gray-200 h-screen overflow-y-auto flex flex-col">
+        <nav className="pl-[72px] pr-[29px] space-y-1 w-full">
+          <div className="flex justify-center w-full mb-[32px]">
+            <div className="relative w-full text-abyss-500">
               <MagnifyingGlassIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 placeholder="Search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-3 py-[10px] text-abyss-500 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-nyu-500"
+                className="text-abyss-500 border border-[#ECEBF1] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-nyu-500
+                lg:h-[2rem] lg:w-[224px] lg:py-[10px] lg:pl-9 lg:pr-3 
+                "
               />
             </div>
           </div>
@@ -246,7 +241,6 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ items, currentPath, onNavigat
             </div>
           )}
         </nav>
-      </div>
     </aside>
   );
 };
