@@ -1,10 +1,10 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import LeftSidebar from './components/leftNavBar/leftSidebar';
 import GuideLayout from '../../layout/guideLayout/guideLayout';
 import { fetchRequest } from '../../api/client/fetchRequest';
 import { serviceContent } from '../../api/url';
 import menuItems from './constants/menuItems.json';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import parse, { domToReact, type DOMNode, Element as DomElement } from 'html-react-parser';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import LoadingSpinner from 'src/components/loadingSpinner/loadingSpinner';
@@ -158,12 +158,12 @@ const createHeadingReplacer = (baseUrl: string) => {
       return (
         <>
           <hr
-            className="guide-component w-full"
+            className="guide-component font-perstare w-full"
             style={{ border: '0' }}
           />
           <h2
             id={id}
-            className="guide-component text-2xl font-bold text-gray-900 mb-4 scroll-mt-24"
+            className="guide-component font-perstare text-2xl font-bold text-gray-900 mb-4 scroll-mt-24"
           >
             {children}
           </h2>
@@ -172,7 +172,7 @@ const createHeadingReplacer = (baseUrl: string) => {
     }
 
     return (
-      <node.name id={id} className={`guide-component ${headingSizes[node.name] || ''}`}>
+      <node.name id={id} className={`guide-component font-perstare ${headingSizes[node.name] || ''}`}>
         {children}
       </node.name>
     );
@@ -191,7 +191,7 @@ const createImageReplacer = (baseUrl: string) => {
       <img
         {...node.attribs}
         src={src}
-        className="guide-component rounded-lg shadow-sm my-4 max-w-full h-auto"
+        className="guide-component font-perstare rounded-lg shadow-sm my-4 max-w-full h-auto"
         alt={node.attribs.alt || ''}
       />
     );
@@ -205,7 +205,7 @@ const createLinkReplacer = (baseUrl: string, onLinkClick: (url: string) => void)
     if (node.attribs.href.startsWith(baseUrl)) {
       return (
         <button
-          className="guide-component text-nyu-950 underline hover:text-nyu-500"
+          className="guide-component font-perstare text-nyu-950 underline hover:text-nyu-500"
           onClick={() => onLinkClick(node.attribs.href)}
         >
           {domToReact(node.children as DOMNode[])}
@@ -337,10 +337,18 @@ const Breadcrumbs = ({
 
 const GuideRoute = () => {
   const location = useLocation();
-  const { uuid, link } = location.state || {};
+  const navigate = useNavigate();
 
-  const [currentPath, setCurrentPath] = useState(link || '/');
-  const [requestPageUUID, setRequestPageUUID] = useState(uuid || '');
+  // Extract the pathname from URL, removing /guides prefix
+  const pathSegments = location.pathname.split('/').filter(Boolean);
+  const currentPath = pathSegments.length > 1 ? '/' + pathSegments.slice(1).join('/') : '/';
+
+  // Memoize selected menu item to prevent unnecessary re-renders
+  const selectedMenuItem = useMemo(() => {
+    if (currentPath === '/') return null;
+    return findMenuItemByLink(menuItems, currentPath);
+  }, [currentPath]);
+
   const [contentData, setContentData] = useState<string | null>(null);
   const [contentTitle, setContentTitle] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -352,7 +360,7 @@ const GuideRoute = () => {
   useEffect(() => {
     setIsLoading(true);
     const fetchContent = async () => {
-      if (!currentPath || currentPath === '/') {
+      if (!currentPath || currentPath === '/' || !selectedMenuItem) {
         setContentData(null);
         setContentTitle(null);
         setIsLoading(false);
@@ -362,7 +370,7 @@ const GuideRoute = () => {
       try {
         setError(null);
 
-        const apiWithParam = serviceContent + requestPageUUID;
+        const apiWithParam = serviceContent + selectedMenuItem.uuid;
         const contentResponse = await fetchRequest(apiWithParam);
 
         if (contentResponse?.[0]?.body) {
@@ -384,18 +392,18 @@ const GuideRoute = () => {
     };
 
     fetchContent();
-  }, [currentPath, requestPageUUID]);
+  }, [currentPath, selectedMenuItem]);
 
-  const handleNavigate = (data: LinkData) => {
-    setCurrentPath(data.link);
-    setRequestPageUUID(data.uuid);
-  };
+  const handleNavigate = useCallback((data: LinkData) => {
+    // Navigate to dynamic subroute using the link from menu
+    navigate(`/guides${data.link}`);
+  }, [navigate]);
 
-  const handleNavigateFromButton = (url: string) => {
+  const handleNavigateFromButton = useCallback((url: string) => {
     const subroute = url.replace('https://wiki.it.shanghai.nyu.edu', '');
     const menuInfo = findMenuItemByLink(menuItems, subroute);
     if (menuInfo) handleNavigate(menuInfo);
-  };
+  }, [handleNavigate]);
 
   return (
     <div className="bg-white min-h-screen pb-30">

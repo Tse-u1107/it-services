@@ -4,7 +4,6 @@ import { useI18nContext } from '../../i18n/i18n-react';
 import ExpandableList from '../../components/expandableList/expandableList';
 import type { Item } from '../../components/expandableList/interface';
 import { Link } from 'react-router-dom';
-// REMOVED: import './home.css'; 
 
 import {
   MagnifyingGlassIcon,
@@ -36,12 +35,10 @@ const HomeRoute = () => {
   const [searchValue, setSearchValue] = useState('');
   const { LL } = useI18nContext();
 
-  const [filteredLinks, setFilteredLinks] = useState<FilteredLink[]>([]);
   const [groupedLinks, setGroupedLinks] = useState<Record<string, FilteredLink[]>>({});
 
   // Search State
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   const [accessItems, setAccessItems] = useState<Item[]>([]);
@@ -51,8 +48,7 @@ const HomeRoute = () => {
   const fetchServiceList = async () => {
     const data = menuItemsJSON;
     const result = processLinks(data);
-    const { filtered, grouped } = result;
-    setFilteredLinks(filtered);
+    const { grouped } = result;
     setGroupedLinks(grouped);
   };
 
@@ -78,7 +74,6 @@ const HomeRoute = () => {
       return;
     }
 
-    setIsSearching(true);
     try {
       const results = await fetchRequest<SearchResult[]>(
         `${searchApiUrl}?limit=5&query=${encodeURIComponent(value)}`
@@ -87,12 +82,9 @@ const HomeRoute = () => {
     } catch (error) {
       console.error('Search error:', error);
       setSearchResults([]);
-    } finally {
-      setIsSearching(false);
     }
   };
 
-  // --- Auto-Scroll Logic ---
   useEffect(() => {
     if (searchResults.length > 0 && isSearchFocused && searchContainerRef.current) {
       searchContainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -108,7 +100,6 @@ const HomeRoute = () => {
     }
     init();
 
-    // Handle click outside search container
     const handleClickOutside = (event: MouseEvent) => {
       if (
         searchContainerRef.current &&
@@ -129,12 +120,12 @@ const HomeRoute = () => {
 
   const categorizeFilteredLinks = (): MenuCategories[] => {
     const iconMap: Record<string, React.ReactNode> = {
-      'Account & Access': <UserIcon className="icon-5" />,
-      'Network & Connectivity': <WifiIcon className="icon-5" />,
-      'Software & Applications': <WindowIcon className="icon-5" />,
-      'Hardware & Devices': <CpuChipIcon className="icon-5" />,
-      'Security & Policies': <ShieldCheckIcon className="icon-5" />,
-      'Support & Services': <UserGroupIcon className="icon-5" />,
+      'Account & Access': <UserIcon strokeWidth={2} className="icon-5" />,
+      'Network & Connectivity': <WifiIcon strokeWidth={2} className="icon-5" />,
+      'Software & Applications': <WindowIcon strokeWidth={2} className="icon-5" />,
+      'Hardware & Devices': <CpuChipIcon strokeWidth={2} className="icon-5" />,
+      'Security & Policies': <ShieldCheckIcon strokeWidth={2} className="icon-5" />,
+      'Support & Services': <UserGroupIcon strokeWidth={2} className="icon-5" />,
     };
 
     return Object.entries(groupedLinks).map(([category, links], index) => ({
@@ -144,9 +135,7 @@ const HomeRoute = () => {
         <ul className="[&>li:not(:last-child)]:mb-6">
           {links.map((link, i) => (
             <li key={i} className="text-md hover:underline hover:text-purple-600 transition-colors">
-              <Link to={`/guides`} state={{ title: link.title, link: link.link, uuid: link.uuid }}>
-                {link.title}
-              </Link>
+              <Link to={`/guides${link.link}`}>{link.title}</Link>
             </li>
           ))}
         </ul>
@@ -160,7 +149,7 @@ const HomeRoute = () => {
       <div className="flex flex-col items-center max-w-[1080px] mx-auto pt-10 pb-8">
         <div className="w-full max-w-[760px] flex-1 mb-[76px]">
           <div className="mb-[40px] justify-center flex">
-            <span className="font-weight-semibold text-5xl">{LL.home.greetingLong()}</span>
+            <span className="font-semibold text-[48px]">{LL.home.greetingLong()}</span>
           </div>
 
           <div
@@ -184,11 +173,8 @@ const HomeRoute = () => {
           </div>
         </div>
         <div className="w-full max-w-[1080px] mb-[76px]">
-          {accessItemsLoading ? (
-            <div className="text-center py-8">Loading quick access items...</div>
-          ) : accessItems.length > 0 ? (
-            <AccessCardBlock accessItems={accessItems} />
-          ) : (
+          <AccessCardBlock accessItems={accessItems} isLoading={accessItemsLoading} />
+          {accessItems.length == 0 && !accessItemsLoading && (
             <div className="text-center py-8">No quick access items available.</div>
           )}
         </div>

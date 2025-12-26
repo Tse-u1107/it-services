@@ -72,12 +72,15 @@ const Navbar = () => {
     const inactiveStyle =
       'text-[#1d1d1f] border-transparent hover:text-[#6e6e73] hover:border-[#57068c] hover:pb-[7px]';
 
-    return `${baseStyle} ${pathname === path ? activeStyle : inactiveStyle}`;
+    // Check if pathname starts with the path (for dynamic routes like /guides/topic)
+    const isActive = pathname === path || pathname.startsWith(`${path}/`);
+
+    return `${baseStyle} ${isActive ? activeStyle : inactiveStyle}`;
   };
 
   return (
     <nav
-      className={`sticky top-0 z-35 flex h-[55px] w-full justify-center border-b border-[#e5e5ea]/50 mb-[2px] bg-white`}
+      className={`sticky top-0 z-100 flex h-[55px] w-full justify-center border-b border-[#e5e5ea]/50 mb-[2px] bg-white`}
     >
       <div className="flex w-full max-w-[1400px] items-center justify-between px-6">
         <div className="flex flex-1" />

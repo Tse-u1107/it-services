@@ -54,7 +54,7 @@ export const transformHomeApiResponse = (apiResponse: HomeApiItem[]): Item[] => 
   return apiResponse.map((item, index) => {
     const cleanTitle = extractTextContent(item.title);
     const imageSrc = extractImageSrc(item.field_services_icon);
-    const linkHref = extractHref(item.field_linkto);
+    const linkHref = extractHref(item.field_linkto.replace('https://wiki.it.shanghai.nyu.edu/', 'guides/'));
 
     return {
       id: generateId(item.field_linkto, index),
