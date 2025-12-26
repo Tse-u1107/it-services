@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 
-const ContentLayout = ({
+const GuideLayout = ({
   leftSideBar,
   rightSideBar,
   children,
@@ -22,7 +22,7 @@ const ContentLayout = ({
 
   return (
     <div className="flex flex-col min-h-screen bg-off-white">
-      <div className="flex flex-1 w-full gap-6 bg-white">
+      <div className="flex flex-1 w-full gap-[22px] bg-white">
         {/* Left sidebar */}
         <aside className="pt-[60px] hidden shrink-0 lg:w-[342px] lg:block">{leftSideBar}</aside>
 
@@ -44,4 +44,4 @@ const ContentLayout = ({
   );
 };
 
-export default ContentLayout;
+export default GuideLayout;

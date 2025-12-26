@@ -22,19 +22,15 @@ const Navbar = () => {
 
   const handleLogin = async () => {
     const res = await fetchServiceList();
-    const authWindow = window.open(res.url);
+    window.open(res.url);
     
-    // Listen for the login success message from the callback window
     const handleMessage = (event: MessageEvent) => {
-      // Verify the message is from the expected origin
       if (event.origin !== window.location.origin) return;
       
       if (event.data.type === 'LOGIN_SUCCESS') {
-        // Reload the auth user data
         const data = loadAuthUser();
         setAuthUser(data);
         
-        // Remove the listener
         window.removeEventListener('message', handleMessage);
       }
     };
@@ -93,9 +89,9 @@ const Navbar = () => {
             <button className={getLinkClass('/home')} onClick={() => navigate('/home')}>
               Home
             </button>
-            <button className={getLinkClass('/categories')} onClick={() => navigate('/categories')}>
+            {/* <button className={getLinkClass('/categories')} onClick={() => navigate('/categories')}>
               Categories
-            </button>
+            </button> */}
             <button className={getLinkClass('/guides')} onClick={() => navigate('/guides')}>
               Guides
             </button>

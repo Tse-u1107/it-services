@@ -1,6 +1,6 @@
 import parse, { type DOMNode, Element as DomElement } from 'html-react-parser';
 
-interface HeadingNode {
+export interface HeadingNode {
   level: number;
   text: string;
   id?: string;

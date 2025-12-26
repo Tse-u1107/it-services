@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import SearchBar from '../../components/navigationBar/components/searchBar/searchBar';
+import SearchBar from '../../components/searchBar/searchBar';
 import { useI18nContext } from '../../i18n/i18n-react';
 import ExpandableList from '../../components/expandableList/expandableList';
 import type { Item } from '../../components/expandableList/interface';

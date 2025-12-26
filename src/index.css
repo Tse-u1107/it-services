@@ -11,6 +11,7 @@
   --color-nyu-700: #57068c; /* official NYU Violet */
   --color-nyu-800: #44046d;
   --color-nyu-900: #2b0245;
+  --color-nyu-950: #8600A1
 }
 
 @theme {
@@ -24,6 +25,7 @@
   --color-abyss-700: #1d1d1d;
   --color-abyss-800: #151515;
   --color-abyss-900: #0c0c0c;
+  --color-abyss-950: #999999;
 }
 
 

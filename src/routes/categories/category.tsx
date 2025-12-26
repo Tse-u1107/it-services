@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import SearchBar from '../../components/navigationBar/components/searchBar/searchBar';
+import SearchBar from '../../components/searchBar/searchBar';
 import { useI18nContext } from '../../i18n/i18n-react';
 import Breadcrumbs from '../../components/breadCrumbs/breadCrumbs';
 import CategorySection from './components/categorySection';
 import { UserCircleIcon as User } from '@heroicons/react/24/outline';
 import { type Item } from '../../components/expandableList/interface';
-import menuItem from '../../assets/menuItems.json'
+import menuItem from '../../assets/menuItems.json';
 import AccessCardBlock from '../../components/accessCard/accessCardBlock';
 import { fetchRequest } from '../../api/client/fetchRequest';
 import { home as homeApiUrl } from '../../api/url';
@@ -27,11 +27,9 @@ const CategoryRoute = () => {
   const [accessItems, setAccessItems] = useState<Item[]>([]);
   const [accessItemsLoading, setAccessItemsLoading] = useState(true);
 
-  console.log(searchValue);
+  const menuData: NavItem[] = menuItem;
 
-  const menuData: NavItem[] = menuItem
-
-  const filteredMenuData = menuData.filter(item => item.title !== "Home");
+  const filteredMenuData = menuData.filter((item) => item.title !== 'Home');
 
   const fetchHomeApiData = async () => {
     try {
@@ -53,16 +51,16 @@ const CategoryRoute = () => {
 
   // Transform NavItem structure to match CategorySection expected format
   const transformToCategoryFormat = (navItems: NavItem[]) => {
-    return navItems.map(navItem => ({
+    return navItems.map((navItem) => ({
       title: navItem.title,
       icon: User, // You can map different icons based on category if needed
-      items: navItem.children 
-        ? navItem.children.map(child => ({
+      items: navItem.children
+        ? navItem.children.map((child) => ({
             link: child.link,
             linkTitle: child.title,
-            uuid: child.uuid
+            uuid: child.uuid,
           }))
-        : []
+        : [],
     }));
   };
 
@@ -112,6 +110,7 @@ const CategoryRoute = () => {
           </div>
           <div className="flex w-full items-center">
             <SearchBar
+              value={searchValue}
               placeholder={LL.common.search()}
               onChange={(e) => setSearchValue(e.target.value)}
               rightButton={<MagnifyingGlassIcon className="icon-5" />}
@@ -132,7 +131,7 @@ const CategoryRoute = () => {
           {accessItemsLoading ? (
             <div className="text-center py-8">Loading quick access items...</div>
           ) : accessItems.length > 0 ? (
-            <AccessCardBlock 
+            <AccessCardBlock
               accessItems={accessItems}
               title="Quick Access"
               showBrowseButton={false}
@@ -145,38 +144,6 @@ const CategoryRoute = () => {
           ) : (
             <div className="text-center py-8">No quick access items available.</div>
           )}
-          
-          {/* 
-          OLD CODE - REPLACED WITH AccessCardBlock COMPONENT AND FETCH LOGIC
-          <div className="w-full">
-            <div className="flex justify-between mb-10">
-              <div className="font-medium text-xl">Quick Access</div>
-              <button className="font-medium text-md text-[#686868] hover:text-black cursor-pointer">
-                Browse all topics {'>'}
-              </button>
-            </div>
-            <div className="flex flex-wrap gap-[56px]">
-              {accessItems.map((item, index) => (
-                <div
-                  key={item.id}
-                  id={'access_' + String(index)}
-                  className="bg-off-white p-6 rounded-[25px] w-[calc(33.333%-37.33px)] relative h-[230px]"
-                >
-                  <div className="icon-8 relative mb-4">{item.icon}</div>
-                  <div className="font-medium text-base mb-4">{item.title}</div>
-                  <div className="font-normal text-base w-full mt-4 color-[#2F2F2F]">
-                    {item.content}
-                  </div>
-                  <div className="absolute bottom-6 right-6">
-                    <button className="bg-black rounded-full flex items-center justify-center cursor-pointer icon-8">
-                      <PlusIcon className="icon-8 text-white" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          */}
         </div>
         <div className="mb-46">
           <HelpSection

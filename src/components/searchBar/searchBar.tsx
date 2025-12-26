@@ -24,11 +24,10 @@ const SearchBar = ({
   onResultClick,
   searchFocused = false
 }: SearchBarProps) => {
-  // Only show if we have results AND the user is focused/searching
   const isOpen = results.length > 0 && searchFocused;
 
   return (
-    <div className="w-full flex flex-col relative z-40">
+    <div className="w-full flex flex-col relative z-30">
       <div className="w-full bg-white rounded-4xl shadow-sm border border-transparent focus-within:border-gray-200 transition-colors">
         <div className="flex items-center w-full p-1">
           <div className="flex-1">
@@ -61,12 +60,6 @@ const SearchBar = ({
               <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-1">
                 Suggested Results
               </div>
-              
-              {/* Max Height Logic:
-                 max-h-80 is approx 320px. 
-                 If you have 1 item, the div shrinks to fit.
-                 If you have 5 items, it stops expanding at 320px and scrolls.
-              */}
               <div className="flex flex-col gap-2 max-h-80 overflow-y-auto custom-scrollbar">
                 {results.map((result, index) => (
                   <div
